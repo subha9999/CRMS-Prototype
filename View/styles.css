@@ -1,0 +1,63 @@
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+   color:#48CCCD;
+   vertical-align:text-bottom;
+  }
+  #totaltickets{
+    color:indigo;
+    font-size: 70px;
+    font-variation-settings: 
+    'wght' 800;
+  }
+  #opentickets{
+    color:rgb(187, 33, 33);
+    font-size: 70px;
+    font-variation-settings: 
+    'wght' 800;
+  }
+  #closedtickets{
+    color:rgb(21, 125, 54);
+    font-size: 70px;
+    font-variation-settings: 
+    'wght' 800;
+  }
+  #priority{
+    color:rgb(0, 0, 0);
+    font-size: 70px;
+    font-variation-settings: 
+    'wght' 800;
+  }
+  #admin{
+    padding-left:50px;
+    font-size: 200px;
+    font-variation-settings: 
+    'wght' 500;
+  }
+  body{
+  font-family: 'Roboto Slab', serif;
+  font-weight: bold;
+  font-size: large;
+  background-color:  #c4dbdb;
+  }
+ .fixed-sidebar{
+    max-height: 100vh;
+    background-color:#9932CC ;
+    box-sizing:border-box;
+}
+.teamLead{
+  color:darkmagenta;
+  text-decoration: underline;
+}
+.prioritybutton{
+  background-color:#48CCCD;
+  border: none;
+}
+.customerbutton{
+  background-color:#48CCCD;
+  border: none;
+  width:25vw;
+}
