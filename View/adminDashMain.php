@@ -1,18 +1,12 @@
- <?php include ("../Controller/AgentController.php");?>
- <!--1st row -->
- <div class="row px-2 py-2">
-    <div class="col-4">
-    <button type="button" class="btn btn-info" id="ticketForm" onclick="showTicketForm()">Add a new Ticket</button>
-    </div>
-    <div class="col-4">
-    <button type="button" class="btn btn-info" onclick="showLead()">
-  Your Team Lead
-</button>
-    </div>
-    </div>
-    <!--2nd row -->
+<!--1st row -->
 <div class="row px-2 py-2">
     <div class="col">
+    <button type="button" class="btn btn-info">Add a new User</button>
+    </div>
+</div>
+<!-- 2nd row-->
+    <div class="row px-2 py-2">
+    <div class="col ">
     <div class="card" style="width: 19rem;height:10rem">
   <div class="card-body">
     <div class="row">
@@ -22,14 +16,14 @@
 </div>
 <div class="col">
 <br>
-<h2 style="color:indigo;"><?php echo $totalTicket_row["total_no_of_tickets"];?></h2>
+<h2 style="color:indigo;">25</h2>
     <h5 class="card-title">Total Tickets</h5>
   </div>
 </div>
     </div>
     </div>
-</div>
-<div class="col">
+    </div>
+    <div class="col">
     <div class="card" style="width: 19rem;height:10rem">
   <div class="card-body">
   <div class="row">
@@ -41,14 +35,14 @@ confirmation_number
 </div>
 <div class="col">
 <br>
-<h2 class="text-danger"><?php echo $openTicket_row["open_tickets"]; ?></h2>
+<h2 class="text-danger">15</h2>
     <h5 class="card-title">Open Tickets</h5>
     </div>
   </div>
 </div>
 </div>
     </div>
-<div class="col">
+    <div class="col">
     <div class="card" style="width: 19rem;height:10rem">
   <div class="card-body">
   <div class="row">
@@ -60,7 +54,7 @@ confirmation_number
 </div>
 <div class="col">
   <br>
-<h2 class="text-success"><?php echo $closedTicket_row["closed_tickets"]; ?></h2>
+<h2 class="text-success">10</h2>
     <h5 class="card-title">Closed Tickets</h5>
 </div>
   </div>
@@ -68,8 +62,8 @@ confirmation_number
 </div>
     </div>
     </div>
-<!--3rd row-->
-<div class="row px-2 py-2">
+    <!--3rd row -->
+    <div class="row px-2 py-2">
     <div class="col ">
     <div class="card" style="width: 21rem;height:10rem;background-color:rgb(221,38,38)">
   <div class="card-body">
@@ -82,7 +76,7 @@ priority
 </div>
 <div class="col">
   <br>
-  <h2 class="text-dark"><?php echo $highPriority_row["high_PriorityTickets"]; ?></h2>
+  <h2 class="text-dark">5</h2>
     <h5 class="card-title">High Priority</h5>
     </div>
     </div>
@@ -101,7 +95,7 @@ priority
 </div>
 <div class="col">
   <br>
-  <h2 class="text-dark"><?php echo  $mediumPriority_row["medium_PriorityTickets"];?></h2>
+  <h2 class="text-dark">10</h2>
     <h5 class="card-title">Medium Priority</h5>
     </div>
     </div>
@@ -120,7 +114,7 @@ priority
 </div>
 <div class="col">
   <br>
-  <h2 class="text-dark"><?php echo $lowPriority_row["low_PriorityTickets"] ;?></h2>
+  <h2 class="text-dark">10</h2>
     <h5 class="card-title">Low Priority</h5>
     </div>
     </div>
@@ -128,7 +122,7 @@ priority
 </div>
     </div>
     </div>
-    <!--4th row-->
+<!--4th row-->
     <div class="row px-2 py-2">
 <div class="col">
 <table class="table table-light table-striped">
@@ -162,7 +156,3 @@ priority
 </table>
 </div>
     </div>
-
-
-   
-

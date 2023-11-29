@@ -36,8 +36,9 @@ contact_mail</span>
   <li class="nav-item py-3 ps-5">
     <a class="nav-link text-dark" href="">
     <span class="material-symbols-outlined">
-contact_mail</span>
-<i>Email:</i><?php echo " ".$client_name;?></a>
+partner_exchange
+</span>
+<i>Client:</i><?php echo " ".$client_name;?></a>
   </li> 
         </ul>
 </div>

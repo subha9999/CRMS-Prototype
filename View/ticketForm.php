@@ -11,7 +11,7 @@ include ("../Controller/AgentController.php");
 <div class="row px-3 py-1">
     <div class="container bg-light">
         <!--Ticket form-->
-        <form action="../Controller/TicketController.php" method="POST">
+        <form action="../Controller/submitTicket.php" method="POST">
         <div class="row g-3 px-3 py-3">
   <div class="col-4">
   <label for="customerName" class="form-label">Select Customer</label><br>
@@ -24,10 +24,12 @@ while($customer_row=mysqli_fetch_assoc($customerInfo)){
 ?>
 </select>
 </div>
-<div class="col-4">
+</div>
+<div class="row px-3 py-2">
+  <div class="col-4">
   <label for="subject" class="form-label">Subject</label><br>
   <input type="text" class="form-control" id="subject" name="subject" required>
-</div>
+  </div>
 </div>
 <div class="row  px-3 py-2">
   <div class="col">
@@ -36,20 +38,14 @@ while($customer_row=mysqli_fetch_assoc($customerInfo)){
   </div>
 </div>
 <div class="row px-3 py-2">
-  <div class="col">
-    <label for="clientName" class="form-label">
-        Client: <?php echo $client_name;?> </label>
-  </div>
-</div>
-<div class="row px-3 py-2">
 <div class="col-4">
 <div class="dropdown">
 <label for="priority" class="form-label">Select Priority</label><br>
     <select  class="prioritybutton px-4 py-2 rounded-2" name="priority" type="button">
        <option>Select</option>
-       <option value="highPriority">High</option>
-       <option value="mediumPriority">Medium</option>
-       <option value="lowPriority">Low</option>
+       <option value="high">High</option>
+       <option value="medium">Medium</option>
+       <option value="low">Low</option>
 </select>
 </div>
 </div>
