@@ -1,12 +1,10 @@
 var id=userID;
-
 function showTicketForm(){
     console.log("Showing the ticket form");
     $("#showForm").load("ticketForm.php");
         
 }
 function goBack(let) {
-    
     console.log("Going Back");
     if (let>=300 && let==id)
     {
@@ -15,6 +13,8 @@ function goBack(let) {
     else if(let==105 && let==id)
     {
     $("#showForm").load("adminDashMain.php");
+    ct();
+
     }
     
 }
@@ -24,6 +24,6 @@ function showLead(){
 }
 function showAddUserForm(){
     console.log("Showing the ticket form");
-    $("#showForm").load("test.php");
+    $("#showForm").load("addUserForm.php");
   
 }

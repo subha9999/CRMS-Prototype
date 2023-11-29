@@ -11,7 +11,7 @@ include ("../Controller/AgentController.php");
 <div class="row px-3 py-1">
     <div class="container bg-light">
         <!--Ticket form-->
-        <form action="../Controller/submitTicket.php" method="POST">
+        <form action="../Controller/ticketController.php" method="POST">
         <div class="row g-3 px-3 py-3">
   <div class="col-4">
   <label for="customerName" class="form-label">Select Customer</label><br>

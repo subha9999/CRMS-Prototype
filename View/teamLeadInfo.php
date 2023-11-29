@@ -1,14 +1,14 @@
+<?php include("../Controller/AgentController.php");?>
  <!--1st row-->
  <div class="row px-2 py-3">
     <div class="col">
- <button type="button" class="btn btn-info"  onclick="goBack()">Go back</button>
+ <button type="button" class="btn btn-info"  onclick="goBack(<?php echo $id;?>)">Go back</button>
 </div>
  </div>
   <!--2nd row-->
  <div class="row px-3 py-4 bg-light">
     <div class="col">
     <div class="container-fluid px-3 py-5">
-        <?php include("../Controller/AgentController.php");?>
         <ul class="nav flex-column">
             <div class="row px-5 m-2">
         <h2 class="teamLead">Team Lead </h2>

@@ -1,13 +1,11 @@
- <?php include ("../Controller/AgentController.php");?>
+ <?php include ("../Controller/AgentController.php");
+ include ("../Controller/ticketController.php")?>
  <!--1st row -->
  <div class="row px-2 py-2">
     <div class="col-4">
     <button type="button" class="btn btn-info" id="ticketForm" onclick="showTicketForm()">Add a new Ticket</button>
     </div>
     <div class="col-4">
-    <button type="button" class="btn btn-info" onclick="showLead()">
-  Your Team Lead
-</button>
     </div>
     </div>
     <!--2nd row -->

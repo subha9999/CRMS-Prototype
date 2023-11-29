@@ -1,5 +1,8 @@
+<?php
+include ("../Controller/adminController.php");
+?>
 <!--1st row -->
-<div class="row px-2 py-2">
+<div class="row px-2 ">
     <div class="col">
     <button type="button" class="btn btn-info" onclick="showAddUserForm()">Add a new User</button>
     </div>
@@ -16,7 +19,7 @@
 </div>
 <div class="col">
 <br>
-<h2 style="color:indigo;">25</h2>
+<h2 style="color:indigo;"><?php echo $totalTicket_row["total_no_of_tickets"];?></h2>
     <h5 class="card-title">Total Tickets</h5>
   </div>
 </div>
@@ -35,7 +38,7 @@ confirmation_number
 </div>
 <div class="col">
 <br>
-<h2 class="text-danger">15</h2>
+<h2 class="text-danger"><?php echo $openTicket_row["open_tickets"]; ?></h2>
     <h5 class="card-title">Open Tickets</h5>
     </div>
   </div>
@@ -54,7 +57,7 @@ confirmation_number
 </div>
 <div class="col">
   <br>
-<h2 class="text-success">10</h2>
+<h2 class="text-success"><?php echo $closedTicket_row["closed_tickets"]; ?></h2>
     <h5 class="card-title">Closed Tickets</h5>
 </div>
   </div>
@@ -76,7 +79,7 @@ priority
 </div>
 <div class="col">
   <br>
-  <h2 class="text-dark">5</h2>
+  <h2 class="text-dark"><?php echo $highPriority_row["high_PriorityTickets"]; ?></h2>
     <h5 class="card-title">High Priority</h5>
     </div>
     </div>
@@ -95,7 +98,7 @@ priority
 </div>
 <div class="col">
   <br>
-  <h2 class="text-dark">10</h2>
+  <h2 class="text-dark"><?php echo  $mediumPriority_row["medium_PriorityTickets"];?></h2>
     <h5 class="card-title">Medium Priority</h5>
     </div>
     </div>
@@ -114,7 +117,7 @@ priority
 </div>
 <div class="col">
   <br>
-  <h2 class="text-dark">10</h2>
+  <h2 class="text-dark"><?php echo $lowPriority_row["low_PriorityTickets"] ;?></h2>
     <h5 class="card-title">Low Priority</h5>
     </div>
     </div>
@@ -125,34 +128,30 @@ priority
 <!--4th row-->
     <div class="row px-2 py-2">
 <div class="col">
-<table class="table table-light table-striped">
-<thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
+<canvas id="clientTicketChart" style="max-width:40vw;max-height:40vh"></canvas>
 </div>
     </div>
+
+<script>
+var yValues=ticketArray;
+var xValues=clientArray;
+const barColors=["#2eade2","#F16725","#e2136e"];
+new Chart("clientTicketChart",{
+        type:"bar",
+        data :{
+            labels :xValues,
+            datasets: [{
+                backgroundColor:barColors,
+                data: yValues
+            }]
+        },
+        options:{
+            legend: {display: true},
+            title: {
+                display: true,
+                text:"Ticket Distribution by Client"
+            }
+        }
+
+});
+</script>
