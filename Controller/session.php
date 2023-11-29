@@ -20,5 +20,9 @@ $name=$_SESSION['Fname']." ".$_SESSION['Lname'];
 $userContact=$_SESSION['contact'];
 $userEmail=$_SESSION['email'];
 $pass=$_SESSION['password'];
-
+json_encode($_SESSION['id']);
 ?>
+<script>
+    var userID=<?php echo json_encode($_SESSION['id']); ?>;
+</script>
+<script src="../View/script.js"></script>

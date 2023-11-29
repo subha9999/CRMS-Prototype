@@ -4,7 +4,7 @@ include ("../Controller/AgentController.php");
 <!-- 1st row-->
 <div class="row px-2 py-1">
     <div class="col-4">
-    <button type="button" class="btn btn-info"  onclick="goBack()">Go back</button>
+    <button type="button" class="btn btn-info"  onclick="goBack(<?php echo $id;?>)">Go back</button>
     </div>
 </div>
 <!--2nd row-->

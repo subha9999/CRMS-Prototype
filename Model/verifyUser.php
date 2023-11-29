@@ -1,4 +1,5 @@
 <?php
+global $row_1,$row_2,$row_3,$row_4;
 function login($userID,$pass){
     include "Configuration/database.php";
     $sql_1="SELECT * FROM admin WHERE adminID='$userID' AND password='$pass';";

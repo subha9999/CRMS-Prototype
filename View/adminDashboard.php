@@ -8,7 +8,7 @@ include "navbar.php";
     <!--1st column for sidebar -->
     <div class="col-2 fixed-sidebar"><?php include"admin_sidebar.php"; ?></div>
     <!--2nd column for the main content-->
-    <div class="col-10 px-5 py-5">
+    <div class="col-10 px-5 py-5" id="showForm">
       <?php include "../View/adminDashMain.php"; ?>
     </div>
     </div>

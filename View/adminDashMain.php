@@ -1,7 +1,7 @@
 <!--1st row -->
 <div class="row px-2 py-2">
     <div class="col">
-    <button type="button" class="btn btn-info">Add a new User</button>
+    <button type="button" class="btn btn-info" onclick="showAddUserForm()">Add a new User</button>
     </div>
 </div>
 <!-- 2nd row-->
