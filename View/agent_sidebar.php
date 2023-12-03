@@ -20,7 +20,7 @@ groups
 </span> Client </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link text-dark" onclick="showLead()"><span class="material-symbols-outlined">
+    <a class="nav-link text-dark" href="../View/teamLeadInfo.php"><span class="material-symbols-outlined">
 group
 </span> Team Lead</a>
   </li>

@@ -10,7 +10,7 @@ include ("../Controller/adminController.php");
 <!-- 2nd row-->
     <div class="row px-2 py-2">
     <div class="col ">
-    <div class="card" style="width: 19vw;height:20vh">
+    <div class="card" style="width: 19rem;height:10rem">
   <div class="card-body">
     <div class="row">
       <div class="col"> 
@@ -27,7 +27,7 @@ include ("../Controller/adminController.php");
     </div>
     </div>
     <div class="col">
-    <div class="card" style="width: 19vw;height:20vh">
+    <div class="card" style="width: 19rem;height:10rem">
   <div class="card-body">
   <div class="row">
   <div class="col">
@@ -46,7 +46,7 @@ confirmation_number
 </div>
     </div>
     <div class="col">
-    <div class="card" style="width: 19vw;height:20vh">
+    <div class="card" style="width: 19rem;height:10rem">
   <div class="card-body">
   <div class="row">
     <div class="col">
@@ -68,7 +68,7 @@ confirmation_number
     <!--3rd row -->
     <div class="row px-2 py-2">
     <div class="col ">
-    <div class="card" style="width: 21vw;height:20vh;background-color:rgb(221,38,38)">
+    <div class="card" style="width: 21rem;height:10rem;background-color:rgb(221,38,38)">
   <div class="card-body">
     <div class="row">
       <div class="col">
@@ -87,7 +87,7 @@ priority
 </div>
     </div>
     <div class="col">
-    <div class="card" style="width: 21vw;height:20vh;background-color:rgb(218,165,32)">
+    <div class="card" style="width: 21rem;height:10rem;background-color:rgb(218,165,32)">
   <div class="card-body">
   <div class="row">
       <div class="col">
@@ -106,7 +106,7 @@ priority
 </div>
     </div>
     <div class="col">
-    <div class="card" style="width: 21vw;height:20vh;background-color:rgb(26,154,26)">
+    <div class="card" style="width: 21rem;height:10rem;background-color:rgb(26,154,26)">
   <div class="card-body">
   <div class="row">
       <div class="col">
@@ -128,14 +128,14 @@ priority
 <!--4th row-->
     <div class="row px-2 py-2">
 <div class="col">
-<canvas id="clientTicketChart" style="max-width:40vw;max-height:40vh"></canvas>
+<canvas id="clientTicketChart" style="max-width:40rem;max-height:20rem"></canvas>
 </div>
     </div>
-<!--JS -->
+
 <script>
 var yValues=ticketArray;
 var xValues=clientArray;
-const barColors=["#2eade2","#F16725","#e2136e"];
+const barColors=["#2eade2","#F16725","#e2136e","#16C1F3"];
 new Chart("clientTicketChart",{
         type:"bar",
         data :{
@@ -143,10 +143,8 @@ new Chart("clientTicketChart",{
             datasets: [{
                 backgroundColor:barColors,
                 data: yValues,
-                label:'Tickets distribution by Clients'
+                label:'Tickets distribution by Client'
             }]
         },
-       
-
 });
 </script>

@@ -12,4 +12,11 @@ function showCustomerNames($id){
     $customer="SELECT * FROM customers WHERE clientID='$client_id'";
     $customerInfo=mysqli_query($link,$customer);
 }
+function showCustomerNamesToAdmin( ){
+  include "../Configuration/database.php";
+  global $customer_row,$customerInfo;
+  $customer="SELECT * FROM customers";
+  $customerInfo=mysqli_query($link,$customer);
+
+}
 ?>

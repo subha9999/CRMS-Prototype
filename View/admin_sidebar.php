@@ -30,7 +30,7 @@ support_agent
 </span> Agents</a>
   </li>
   <li class="nav-item ">
-    <a class="nav-link text-dark" href="#"><span class="material-symbols-outlined">
+    <a class="nav-link text-dark" href="../View/adminTicket.php"><span class="material-symbols-outlined">
     confirmation_number
 </span> Tickets</a>
   </li>

@@ -5,7 +5,7 @@ function addNewAgent($firstName,$lastName,$email,$number,$password,$re_password,
   if (!preg_match('/[A-Z]/', $password)) {
       $validforPassword=false;  
   }
-  
+
   if (!preg_match('/[a-z]/', $password)) {
       $validforPassword=false;
   }
@@ -32,5 +32,11 @@ function addNewAgent($firstName,$lastName,$email,$number,$password,$re_password,
   else {
     echo "Retype your password again";
   }
+}
+function showAgentToAdmin(){
+  include "../Configuration/database.php";
+  global $agentInfo,$agentRow;
+  $agentSQL="SELECT * FROM agent";
+  $agentInfo=mysqli_query($link,$agentSQL);
 }
 ?>

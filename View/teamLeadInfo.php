@@ -1,8 +1,18 @@
+<?php include "header.php";
+include "navbar.php"; ?>
+<div class="container-fluid">
+   <!--Main row -->
+  <div class="row">
+    <!--1st column for sidebar -->
+    <div class="col-2 fixed-sidebar"><?php include"agent_sidebar.php"; ?></div>
+    <!--2nd column for the main content-->
+    
+    <div class="col-10 px-5 py-3" id="showForm">
 <?php include("../Controller/AgentController.php");?>
  <!--1st row-->
  <div class="row px-2 py-3">
     <div class="col">
- <button type="button" class="btn btn-info"  onclick="goBack(<?php echo $id;?>)">Go back</button>
+ <a type="button" class="btn btn-info"  href="../View/agentDashboard.php">Go back</a>
 </div>
  </div>
   <!--2nd row-->
@@ -44,4 +54,5 @@ partner_exchange
 </div>
 </div>
 </div>
-     
+</div>
+</div>

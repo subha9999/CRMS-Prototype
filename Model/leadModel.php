@@ -62,4 +62,11 @@ function addNewLead($firstName,$lastName,$email,$number,$password,$re_password,$
     echo "Retype your password again";
   }
 }
+function showLeadToAdmin(){
+    include "../Configuration/database.php";
+    global $leadInfo,$leadRow;
+    $leadSQL="SELECT * FROM team_lead";
+    $leadInfo=mysqli_query($link,$leadSQL);
+}
+
 ?>

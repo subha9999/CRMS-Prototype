@@ -35,5 +35,11 @@ function getClientCompany(){
     }
     return $clientCompany;
 }
-
+function getTicketPriority(){
+    include "../Configuration/database.php";
+    global $highPriorityTicket,$mediumPriorityTicket,$lowPriorityTicket;
+    $highPriorityTicket = array();
+    $mediumPriorityTicket = array();
+    $lowPriorityTicket = array();
+}
 ?>

@@ -51,4 +51,10 @@ function addNewClient($firstName,$lastName,$email,$number,$companyName,$password
       echo "Retype your password again";
     }
 }
+function showClientToAdmin(){
+    include ("../Configuration/database.php");
+    global $clientInfo,$clientRow;
+    $clientSQL="SELECT * FROM client";
+    $clientInfo=mysqli_query($link,$clientSQL);
+}
 ?>

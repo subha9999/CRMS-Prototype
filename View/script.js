@@ -17,10 +17,6 @@ function goBack(let) {
     }
     
 }
-function showLead(){
-    console.log("Showing info");
-    $("#showForm").load("teamLeadInfo.php");
-}
 function showAddUserForm(){
     console.log("Showing the add user form");
     $("#showForm").load("addUserForm.php");
@@ -37,4 +33,8 @@ function showLeadForm(){
 function showClientForm(){
     console.log("Showing the client form");
     $("#showSpecificForm").load("clientForm.php");
+}
+function showAdminTicketForm(){
+    console.log("Showing the ticket form");
+    $("#adminTicket").load("adminTicketForm.php");
 }
