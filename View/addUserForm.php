@@ -1,50 +1,54 @@
 <?php include "../Controller/session.php" ?>
-<form>
-  <div class="row mb-3">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-    <div class="col-sm-10">
-      <input type="email" class="form-control" id="inputEmail3">
+<!-- 1st row-->
+<div class="row px-2 py-1">
+    <div class="col-4">
+    <button type="button" class="btn btn-info"  onclick="goBack(<?php echo $ID;?>)">Go back</button>
     </div>
-  </div>
-  <div class="row mb-3">
-    <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-    <div class="col-sm-10">
-      <input type="password" class="form-control" id="inputPassword3">
-    </div>
-  </div>
-  <fieldset class="row mb-3">
-    <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
-    <div class="col-sm-10">
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-        <label class="form-check-label" for="gridRadios1">
-          First radio
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-        <label class="form-check-label" for="gridRadios2">
-          Second radio
-        </label>
-      </div>
-      <div class="form-check disabled">
-        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
-        <label class="form-check-label" for="gridRadios3">
-          Third disabled radio
-        </label>
-      </div>
-    </div>
-  </fieldset>
-  <div class="row mb-3">
-    <div class="col-sm-10 offset-sm-2">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="gridCheck1">
-        <label class="form-check-label" for="gridCheck1">
-          Example checkbox
-        </label>
-      </div>
-    </div>
-  </div>
-  <button type="submit" class="btn btn-primary">Sign in</button>
-</form>
-<button onclick="goBack(<?php echo $ID;?>)">Go Back</button>
+</div>
+<!--2nd row-->
+<div class="row px-3 py-3">
+    <div class="container bg-light h-100">
+        <!--Add User form-->
+        <div class="row g-3 px-3 py-3">
+        <h3>Select User Type</h3> 
+        <div class="dropdown">
+  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    User Type
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item" onclick="showAgentForm()">Agent</a></li>
+    <li><a class="dropdown-item" onclick="showLeadForm()">Team Lead</a></li>
+    <li><a class="dropdown-item" onclick="showClientForm()">Client</a></li>
+  </ul>
+</div>
+</div>
+<!--3rd row -->
+<div class="row px-3" id="showSpecificForm">
+<div class="row pt-4">
+  <label for="formGroupExampleInput" class="form-label ">First Name</label>
+  <div class="col-6">
+    <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+</div>
+</div>
+<div class="row pt-5">
+<label for="formGroupExampleInput" class="form-label ">Last Name</label>
+  <div class="col-6">
+<input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+</div>
+</div>
+<div class="row pt-5">
+<label for="formGroupExampleInput" class="form-label ">Email</label>
+  <div class="col-6">
+<input type="text" class="form-control" placeholder="Email" aria-label="Email">
+</div>
+</div>
+<div class="row pt-5 pb-5">
+<label for="formGroupExampleInput" class="form-label ">Contact Number</label>
+  <div class="col-6">
+<input type="text" class="form-control" placeholder="Contact Number" aria-label="Contact Number">
+</div>
+</div>
+</div>
+<!---->
+</div>
+</div>
