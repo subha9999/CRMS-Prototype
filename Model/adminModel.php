@@ -37,9 +37,21 @@ function getClientCompany(){
 }
 function getTicketPriority(){
     include "../Configuration/database.php";
-    global $highPriorityTicket,$mediumPriorityTicket,$lowPriorityTicket;
-    $highPriorityTicket = array();
-    $mediumPriorityTicket = array();
-    $lowPriorityTicket = array();
+    global $priority_count;
+    $priority_count = array();
+    $highPrioritySQL="SELECT COUNT(ticketID) AS HighPriorityTickets FROM `tickets` WHERE priority='High'";
+    $highPriorityInfo=mysqli_query($link,$highPrioritySQL);
+    $highPriorityRow=mysqli_fetch_assoc($highPriorityInfo);
+    $mediumPrioritySQL="SELECT COUNT(ticketID) AS MediumPriorityTickets FROM `tickets` WHERE priority='Medium'";
+    $mediumPriorityInfo=mysqli_query($link,$mediumPrioritySQL);
+    $mediumPriorityRow=mysqli_fetch_assoc($mediumPriorityInfo);
+    $lowPrioritySQL="SELECT COUNT(ticketID) AS LowPriorityTickets FROM `tickets` WHERE priority='Low'";
+    $lowPriorityInfo=mysqli_query($link,$lowPrioritySQL);
+    $lowPriorityRow=mysqli_fetch_assoc($lowPriorityInfo);
+    $priority_count[0]=$highPriorityRow['HighPriorityTickets'];
+    $priority_count[1]=$mediumPriorityRow['MediumPriorityTickets'];
+    $priority_count[2]=$lowPriorityRow['LowPriorityTickets'];
+    return $priority_count;
 }
+
 ?>

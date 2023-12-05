@@ -25,7 +25,7 @@ function submitTicket($id,$priority,$customer_id,$creationDateAndTime,$ticketDes
 }
 function showTicketsToAdmin(){
     include ('../Configuration/database.php');
-    global $totalTicket_row,$openTicket_row,$closedTicket_row,$highPriority_row,$mediumPriority_row,$lowPriority_row;
+    global $totalTicket_row,$openTicket_row,$closedTicket_row,$highPriority_row,$mediumPriority_row,$lowPriority_row,$allTicketsRow,$allTicketsInfo;
     $totalTicket = "SELECT COUNT(ticketID) AS total_no_of_tickets FROM tickets";
     $totalTicketInfo=mysqli_query($link,$totalTicket);
     $totalTicket_row=mysqli_fetch_array($totalTicketInfo,MYSQLI_ASSOC);
@@ -49,6 +49,11 @@ function showTicketsToAdmin(){
     $lowPriorityTicket= "SELECT COUNT(ticketID) AS low_PriorityTickets FROM tickets WHERE priority='low'";
     $lowPriorityInfo=mysqli_query($link,$lowPriorityTicket);
     $lowPriority_row=mysqli_fetch_array($lowPriorityInfo,MYSQLI_ASSOC);
+
+    $allTicketsSQL="SELECT * FROM tickets";
+    $allTicketsInfo=mysqli_query($link,$allTicketsSQL);
+    
+    
 }
 function showTicketsToAgents($id){
     include ('../Configuration/database.php');
