@@ -10,10 +10,7 @@ include "../Controller/adminController.php";
     <div class="col-2 fixed-sidebar"><?php include"admin_sidebar.php"; ?></div>
     <!--2nd column for the main content-->
     <div class="col-10 px-5 py-3" id="adminTicket">
-      <!-- 1st row-->
-<div class="row px-2 py-1" id="target">
-</div>
-<!--2nd Row-->
+<!--1st Row-->
 <div class="row">
     <div class="col pb-2">
 <div class="py-3">

@@ -44,5 +44,5 @@ function goBackToadminTicket(){
     $("#adminTicket").load("adminTicket.php #target");
 }
 function confirmBeforeDelete(){
-    alert("Are you sure you want to delete?");
+    confirm("Are you sure you want to delete?");
 }
