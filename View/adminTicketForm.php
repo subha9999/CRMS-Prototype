@@ -66,7 +66,7 @@ while($agentRow=mysqli_fetch_assoc($agentInfo)){
 </div>
 <div class="row g-3 px-3 py-2">
     <div class="col-4">
-<input type="submit" value="Submit Ticket"class="btn" style="background-color:#48CCCD ;">
+<input type="submit"name="submitTicket"  value="Submit Ticket"class="btn" style="background-color:#48CCCD ;">
 </div>
 </div>
         </form>

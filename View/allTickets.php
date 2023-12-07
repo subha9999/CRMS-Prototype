@@ -1,7 +1,19 @@
 <?php 
-include ("../Controller/adminController.php");?>
-<div class="container bg-light py-3 px-3" id="target">
-<button type="button" class="btn btn-info m-2" onclick="goBackToadminTicket()">Go Back</button>
+include "header.php";
+include "navbar.php";
+include "../Controller/adminController.php";
+?>
+<div class="container-fluid">
+  <!--Main row -->
+  <div class="row">
+    <!--1st column for sidebar -->
+    <div class="col-2 fixed-sidebar"><?php include"admin_sidebar.php"; ?></div>
+    <!--2nd column for the main content-->
+    <div class="col-10 px-5 py-3" id="adminTicket">
+      <!--1st row-->
+<div class="container py-2 px-3" id="target">
+<a type="button" class="btn btn-info m-2" href="../View/adminTicket.php">Go Back</a>
+<div class="container pt-2 bg-light">
 <table class="table border-dark px-2 py-2" >
   <thead style="background-color:darkturquoise">
     <tr>
@@ -25,39 +37,27 @@ include ("../Controller/adminController.php");?>
       <td><?php echo $allTicketsRow['priority'];?></td>
       <td><?php echo $allTicketsRow['created_at'];?></td>
       <td><?php echo $allTicketsRow['updated_at'];?></td>
-      <td><!-- Button trigger modal -->
-<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#ticketModal">
-  View Ticket
-</button></td>
+      <td>
+            <form action="../Controller/ticketController.php" method="GET">
+                <input type="hidden" name="ticketID" value="<?php echo $allTicketsRow['ticketID']; ?>">
+                <button type="submit" class="btn btn-success">View Ticket</button>
+            </form>
+      </td>
     </tr>
     <?php } ?>
   </tbody>
 </table>
   </div>
+  </div>
+  </div>
+  </div>
+  </div>
+<!--Script for datatable-->
   <script>$('.table').DataTable({
-    ordering: false,
+    pagingType:'full',
     lengthMenu: [
         [5,10, 25, 50, -1],
         [5,10, 25, 50, 'All']
     ]
-  });</script>
-
-
-
-  <div class="modal fade" id="ticketModal" tabindex="-1" aria-labelledby="ticketModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="ticketModalLabel">Ticket #</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-info">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+  });
+</script>

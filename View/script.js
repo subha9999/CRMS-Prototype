@@ -38,12 +38,11 @@ function showAdminTicketForm(){
     console.log("Showing the ticket form");
     $("#adminTicket").load("adminTicketForm.php");
 }
-function showAllTickets(){
-    console.log("Showing all the tickets");
-    $("#adminTicket").load("allTickets.php");
-}
 function goBackToadminTicket(){
     console.log("Showing all the tickets");
     location.reload();
     $("#adminTicket").load("adminTicket.php #target");
+}
+function confirmBeforeDelete(){
+    alert("Are you sure you want to delete?");
 }

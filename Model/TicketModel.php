@@ -12,7 +12,7 @@ function submitTicket($id,$priority,$customer_id,$creationDateAndTime,$ticketDes
     $client="SELECT client.clientID  FROM agent
      JOIN team_lead ON agent.teamleadID = team_lead.leadID 
      JOIN client ON team_lead.client_id = client.clientID
-      WHERE agent.agentID = '$id';";
+     WHERE agent.agentID = '$id';";
     $clientInfo=mysqli_query($link,$client);
     $clientrow=mysqli_fetch_array($clientInfo,MYSQLI_ASSOC);
     $client_id=$clientrow["clientID"];
@@ -25,7 +25,8 @@ function submitTicket($id,$priority,$customer_id,$creationDateAndTime,$ticketDes
 }
 function showTicketsToAdmin(){
     include ('../Configuration/database.php');
-    global $totalTicket_row,$openTicket_row,$closedTicket_row,$highPriority_row,$mediumPriority_row,$lowPriority_row,$allTicketsRow,$allTicketsInfo;
+    global $totalTicket_row,$openTicket_row,$closedTicket_row,$highPriority_row,
+    $mediumPriority_row,$lowPriority_row,$allTicketsRow,$allTicketsInfo,$highPriorityTicketInfo,$highPriorityTicketRow;
     $totalTicket = "SELECT COUNT(ticketID) AS total_no_of_tickets FROM tickets";
     $totalTicketInfo=mysqli_query($link,$totalTicket);
     $totalTicket_row=mysqli_fetch_array($totalTicketInfo,MYSQLI_ASSOC);
@@ -34,7 +35,7 @@ function showTicketsToAdmin(){
     $openTicketInfo=mysqli_query($link,$openTicket);
     $openTicket_row=mysqli_fetch_array($openTicketInfo,MYSQLI_ASSOC);
 
-    $closedTicket= "SELECT COUNT(ticketID) as closed_tickets FROM tickets WHERE status='Closed'";
+    $closedTicket= "SELECT COUNT(ticketID) as closed_tickets FROM tickets WHERE status='Close'";
     $closedTicketInfo=mysqli_query($link,$closedTicket);
     $closedTicket_row=mysqli_fetch_array($closedTicketInfo,MYSQLI_ASSOC);
 
@@ -52,6 +53,9 @@ function showTicketsToAdmin(){
 
     $allTicketsSQL="SELECT * FROM tickets";
     $allTicketsInfo=mysqli_query($link,$allTicketsSQL);
+
+    $highPriorityTicketSql="SELECT * FROM tickets WHERE priority='high'";
+    $highPriorityTicketInfo=mysqli_query($link,$highPriorityTicketSql);
     
     
 }
@@ -66,7 +70,7 @@ function showTicketsToAgents($id){
     $openTicketInfo=mysqli_query($link,$openTicket);
     $openTicket_row=mysqli_fetch_array($openTicketInfo,MYSQLI_ASSOC);
 
-    $closedTicket= "SELECT COUNT(ticketID) as closed_tickets FROM tickets WHERE status='Closed' AND agentID='$id'";
+    $closedTicket= "SELECT COUNT(ticketID) as closed_tickets FROM tickets WHERE status='Close' AND agentID='$id'";
     $closedTicketInfo=mysqli_query($link,$closedTicket);
     $closedTicket_row=mysqli_fetch_array($closedTicketInfo,MYSQLI_ASSOC);
 
@@ -94,6 +98,66 @@ function submitTicketFromAdmin($id,$priority,$customer_id,$creationDateAndTime,$
     $ticketInfo=mysqli_query($link,$ticket);
     if($ticketInfo){
         header ('Refresh: 1; URL =../View/adminTicket.php');
+    }
+}
+function getTickets( ){
+    include "../Configuration/database.php";
+    global $ticket_row,$ticketInfo;
+    $ticketSql="SELECT * FROM tickets";
+    $ticketInfo=mysqli_query($link,$ticketSql);
+  
+  }
+function getTicketDetails($ticketID){
+    include '../Configuration/database.php';
+    global $ticket_details_row,$clientRow, $customerRow,$agentRow;
+    $sql="SELECT * FROM tickets WHERE ticketID='$ticketID'";
+    $result=mysqli_query($link,$sql);
+    $ticket_details_row=mysqli_fetch_array($result,MYSQLI_ASSOC);
+
+    $clientName="SELECT client.clientCompany AS client FROM tickets
+    JOIN client ON tickets.clientID=client.clientID
+    WHERE ticketID='$ticketID'";
+    $clientInfo=mysqli_query($link,$clientName);
+    $clientRow=mysqli_fetch_array($clientInfo,MYSQLI_ASSOC);
+
+    $customerName="SELECT customers.customer_fname AS customerFirstName,customers.customer_lname AS customerLastName FROM tickets
+    JOIN customers ON tickets.customerID=customers.customerID
+    WHERE ticketID='$ticketID'";
+    $customerInfo=mysqli_query($link,$customerName);
+    $customerRow=mysqli_fetch_array($customerInfo,MYSQLI_ASSOC);
+
+    $agentName="SELECT agent.agent_fname AS agentFirstName,agent.agent_lname AS agentLastName FROM tickets
+    JOIN agent ON tickets.agentID=agent.agentID
+    WHERE ticketID='$ticketID'";
+    $agentInfo=mysqli_query($link,$agentName);
+    $agentRow=mysqli_fetch_array($agentInfo,MYSQLI_ASSOC);
+   
+}
+function changeStatus($ticketID,$newStatus,$updateDateandTime){
+    include "../Configuration/database.php";
+    $sql="UPDATE tickets SET status='$newStatus',updated_at='$updateDateandTime' WHERE ticketID='$ticketID'";
+    $sqlResult=mysqli_query($link,$sql);
+    if($sqlResult){
+        echo "Done";
+        header("Location:../View/allTickets.php");
+    }
+}
+function changePriority($ticketID,$newPriority,$updateDateandTime){
+    include "../Configuration/database.php";
+    $sql="UPDATE tickets SET priority='$newPriority',updated_at='$updateDateandTime' WHERE ticketID='$ticketID'";
+    $sqlResult=mysqli_query($link,$sql);
+    if($sqlResult){
+        echo "Done";
+        header("Location:../View/allTickets.php");
+    }
+}
+function deleteTicket($deleteTicketID){
+    include "../Configuration/database.php";
+    $sql="DELETE FROM tickets WHERE ticketID='$deleteTicketID'";
+    $sqlResult=mysqli_query($link,$sql);
+    if($sqlResult){
+        echo "Done";
+        header("Location:../View/allTickets.php");
     }
 }
 ?>

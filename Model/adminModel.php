@@ -53,5 +53,20 @@ function getTicketPriority(){
     $priority_count[2]=$lowPriorityRow['LowPriorityTickets'];
     return $priority_count;
 }
+function getTicketStatus(){
+    include "../Configuration/database.php";
+    global $status_count;
+    $status_count = array();
+    $closedSQL="SELECT COUNT(ticketID) AS closedTickets FROM `tickets` WHERE status='close'";
+    $closedInfo=mysqli_query($link,$closedSQL);
+    $closedRow=mysqli_fetch_assoc($closedInfo);
 
+    $openSQL="SELECT COUNT(ticketID) AS openTickets FROM `tickets` WHERE status='open'";
+    $openInfo=mysqli_query($link,$openSQL);
+    $openRow=mysqli_fetch_assoc($openInfo);
+   
+    $status_count[0]=$closedRow['closedTickets'];
+    $status_count[1]=$openRow['openTickets'];
+    return $status_count;
+}
 ?>

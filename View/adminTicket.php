@@ -12,47 +12,33 @@ include "../Controller/adminController.php";
     <div class="col-10 px-5 py-3" id="adminTicket">
       <!-- 1st row-->
 <div class="row px-2 py-1" id="target">
-    <div class="col-2">
-    <button type="button" class="btn btn-info" onclick="showAdminTicketForm()">Add a new Ticket</button>
-    </div>
 </div>
 <!--2nd Row-->
-<div class="container my-3 bg-light" >
+<div class="row">
+    <div class="col pb-2">
+<div class="py-3">
+    <a type="button" class="btn btn-info"  href="../View/allTickets.php">View All Tickets</a>
+</div>
+</div>
+<div class="col pb-2">
+<div class="py-3">
+    <button type="button" class="btn btn-info" onclick="showAdminTicketForm()">Add a new Ticket</button>
+</div>
+</div>
+</div>
+<div class="container bg-light" >
   <div class="row py-5">
     <div class="col-6">
-    <figure class="figure px-5 py-5">
+    <figure class="figure px-5 ">
 <canvas id="priorityTicketChart" style="max-width:40rem;max-height:20rem"></canvas>
-<figcaption class="figure-caption py-2 text-center">Tickets Distribution by Priority</figcaption>
+<figcaption class="figure-caption py-5 text-center">Tickets Distribution by Priority</figcaption>
 </figure>
 </div>
 <div class="col-6">
-<div class="card" style="width: 25rem;background-color:darkcyan">
-  <div class="card-body rounded-5">
-    <h5 class="card-title ">Ticket Information</h5>
-    <hr>
-<div class="py-2">
-    <button type="button" class="btn btn-dark"  onclick="showAllTickets()">View All Tickets</button>
-</div>
-<div class="py-2">
-    <button type="button" class="btn btn-dark" onclick="">View High Priority Tickets</button>
-</div>
-<div class="py-2">
-    <button type="button" class="btn btn-dark"  onclick="">View Medium Priority Tickets</button>
-</div>
-<div class="py-2">
-    <button type="button" class="btn btn-dark"  onclick="">View Low Priority Tickets</button>
-</div>
-<div class="py-2">
-    <button type="button" class="btn btn-dark" onclick="">View Open Tickets</button>
-</div>
-<div class="py-2">
-    <button type="button" class="btn btn-dark"  onclick="">View Tickets In Progress</button>
-</div>
-<div class="py-2">
-    <button type="button" class="btn btn-dark" onclick="">View Closed Tickets</button>
-</div>
-  </div>
-</div>
+<figure class="figure px-5 ">
+<canvas id="statusTicketChart" style="max-width:40rem;max-height:20rem"></canvas>
+<figcaption class="figure-caption py-5 text-center">Tickets Distribution by Status</figcaption>
+</figure>
 </div>
 </div>
 </div>
@@ -70,6 +56,19 @@ new Chart("priorityTicketChart",{
             datasets: [{
                 backgroundColor:barColors,
                 data: yValues,
+            }]
+        }
+});
+var y_values=statusTicketArray;
+var x_values=['Closed Tickets','Open Tickets']
+const bar_colors=["RGB(101, 204, 50)","rgb(100, 149, 237"];
+new Chart("statusTicketChart",{
+        type:"doughnut",
+        data :{
+            labels :x_values,
+            datasets: [{
+                backgroundColor:bar_colors,
+                data: y_values,
             }]
         }
 });
