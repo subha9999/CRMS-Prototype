@@ -15,13 +15,19 @@ function addNewAgent($firstName,$lastName,$email,$number,$password,$re_password,
   }
   if($validforPassword==true && $password==$re_password)
   {
-  $newAgentSQL="INSERT INTO agent (agent_fname,agent_lname,email,password,contact,role,teamleadID)
-  VALUES ('$firstName','$lastName','$email','$password','$number','Agent','$leadID')";
+    $newUser="INSERT INTO users(user_F_Name,user_L_Name,email,password,contact,role)
+    VALUES ('$firstName','$lastName','$email','$password','$number','Agent')";
+    $newUserResult=mysqli_query($link,$newUser);
+    if($newUserResult){
+      $userID=mysqli_insert_id($link);
+  $newAgentSQL="INSERT INTO agent (userID,agent_fname,agent_lname,email,password,contact,role,teamleadID)
+  VALUES ('$userID','$firstName','$lastName','$email','$password','$number','Agent','$leadID')";
   $newAgent=mysqli_query($link,$newAgentSQL);
   if($newAgent){
     echo "Done";
     header('Refresh:0.2, URL=../View/adminDashboard.php');
   }
+}
   else{
     echo "Failed to add";
   }

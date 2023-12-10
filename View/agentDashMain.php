@@ -1,5 +1,4 @@
- <?php include ("../Controller/AgentController.php");
- include ("../Controller/ticketController.php")?>
+ <?php include ("../Controller/AgentController.php");?>
  <!--1st row -->
  <div class="row px-2 py-2">
     <div class="col-4">

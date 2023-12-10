@@ -85,7 +85,7 @@ function login($userID,$pass){
         
     }
     else{
-        echo "Failed to login";
+        echo '<script>alert("Failed to login")</script>';
     }
 }
 ?>

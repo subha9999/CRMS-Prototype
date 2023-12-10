@@ -14,7 +14,7 @@ include "../Controller/adminController.php";
 <div class="container py-2 px-3" id="target">
 <a type="button" class="btn btn-info m-2" href="../View/adminTicket.php">Go Back</a>
 <div class="container pt-2 bg-light">
-<table class="table border-dark px-2 py-2" >
+<table class="table border-dark px-2 py-2" id="ticketsTable">
   <thead style="background-color:darkturquoise">
     <tr>
       <th scope="col">Ticket ID</th>
@@ -53,7 +53,7 @@ include "../Controller/adminController.php";
   </div>
   </div>
 <!--Script for datatable-->
-  <script>$('.table').DataTable({
+  <script>$('#ticketsTable').DataTable({
     pagingType:'full',
     lengthMenu: [
         [5,10, 25, 50, -1],

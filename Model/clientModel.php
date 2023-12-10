@@ -33,12 +33,18 @@ function addNewClient($firstName,$lastName,$email,$number,$companyName,$password
     }
     if($validforPassword==true && $password==$re_password)
     {
-      $newLead="INSERT INTO client(representative_fname,representative_lname,email,password,contact,clientCompany)
-      VALUES ('$firstName','$lastName','$email','$password','$number','$companyName')";
-      $newLeadResult=mysqli_query($link,$newLead);
-    if($newLeadResult){
-      echo "Done";
-      header('Refresh:0.2, URL=../View/adminDashboard.php');
+      $newUser="INSERT INTO users(user_F_Name,user_L_Name,email,password,contact,role)
+      VALUES ('$firstName','$lastName','$email','$password','$number','Client')";
+      $newUserResult=mysqli_query($link,$newUser);
+      if($newUserResult){
+        $userID=mysqli_insert_id($link);
+        $newLead="INSERT INTO client(userID,representative_fname,representative_lname,email,password,contact,clientCompany)
+        VALUES ('$userID','$firstName','$lastName','$email','$password','$number','$companyName')";
+        $newLeadResult=mysqli_query($link,$newLead);
+        if($newLeadResult){
+          echo "Done";
+          header('Refresh:0.2, URL=../View/adminDashboard.php');
+        }
     }
     else{
       echo "Failed to add";

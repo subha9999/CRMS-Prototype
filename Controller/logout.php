@@ -2,6 +2,6 @@
  session_start();
  $_SESSION=array();
  session_destroy();
- echo "Logging Out";
+ echo '<script>alert("Logging Out")</script>';
  header('Refresh: 1; URL = index.php');
 ?>

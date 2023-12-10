@@ -44,13 +44,19 @@ function addNewLead($firstName,$lastName,$email,$number,$password,$re_password,$
   }
   if($validforPassword==true && $password==$re_password)
   {
-    $newLead="INSERT INTO team_lead(lead_fname,lead_lname,role,email,password,contact,client_id)
-    VALUES ('$firstName','$lastName','Team Lead','$email','$password','$number','$clientID')";
+    $newUser="INSERT INTO users(user_F_Name,user_L_Name,email,password,contact,role)
+      VALUES ('$firstName','$lastName','$email','$password','$number','Team Lead')";
+      $newUserResult=mysqli_query($link,$newUser);
+      if($newUserResult){
+        $userID=mysqli_insert_id($link);
+    $newLead="INSERT INTO team_lead(userID,lead_fname,lead_lname,role,email,password,contact,client_id)
+    VALUES ('$userID','$firstName','$lastName','Team Lead','$email','$password','$number','$clientID')";
     $newLeadResult=mysqli_query($link,$newLead);
   if($newLeadResult){
     echo "Done";
     header('Refresh:0.2, URL=../View/adminDashboard.php');
   }
+}
   else{
     echo "Failed to add";
   }

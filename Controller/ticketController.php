@@ -3,7 +3,7 @@ include ("session.php");
 include ('../Model/TicketModel.php');
 $_POST['id']=$_SESSION['id'];
 $id=$_POST['id'];
-if($_SERVER["REQUEST_METHOD"]=="GET"){
+if($_SERVER["REQUEST_METHOD"]=="GET" && !empty($_GET['ticketID'])){
     $ticketID=$_GET['ticketID'];
     getTicketDetails($ticketID);    
     include ('../View/viewTicket.php');
@@ -32,5 +32,5 @@ else if($_SERVER["REQUEST_METHOD"]=="POST" && !empty( $_POST["hiddenTicketID"]))
     $deleteTicketID=$_POST["hiddenTicketID"];
     deleteTicket($deleteTicketID);
 }
-showTicketsToAgents($id);
+
 ?>

@@ -1,5 +1,9 @@
 <?php
 include("../Controller/session.php");
+include_once ('../Model/clientModel.php');
+include_once ('../Model/leadModel.php');
+include_once ("../Model/customerModel.php");
+include_once ("../Model/TicketModel.php");
 if($_SERVER["REQUEST_METHOD"]=="POST"){
     $firstName=$_POST['firstName'];
     $lastName=$_POST['lastName'];
@@ -13,11 +17,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 }
 $_POST['id']=$ID;
 $id=$_POST['id'];
-include ('../Model/clientModel.php');
 showClientName($id);
-include ('../Model/leadModel.php');
 showTeamLead($id);
 assignLead();
-include ("../Model/customerModel.php");
 showCustomerNames($id);
+showTicketsToAgents($id);
 ?>
