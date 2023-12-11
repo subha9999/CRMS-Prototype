@@ -1,10 +1,13 @@
 <?php
 include("../Controller/session.php");
+$_POST['id']=$ID;
+$id=$_POST['id'];
 include_once ('../Model/clientModel.php');
 include_once ('../Model/leadModel.php');
 include_once ("../Model/customerModel.php");
 include_once ("../Model/TicketModel.php");
-if($_SERVER["REQUEST_METHOD"]=="POST"){
+include_once ("../Model/AgentModel.php");
+if(($_SERVER["REQUEST_METHOD"]=="POST") && !empty($_POST['firstName'])){
     $firstName=$_POST['firstName'];
     $lastName=$_POST['lastName'];
     $email=$_POST['email'];
@@ -12,14 +15,23 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $password=$_POST['password'];
     $re_password=$_POST['re-password'];
     $leadID=$_POST['leadID'];
-    include ("../Model/AgentModel.php");
     addNewAgent($firstName,$lastName,$email,$number,$password,$re_password,$leadID);
 }
-$_POST['id']=$ID;
-$id=$_POST['id'];
+else if($_SERVER["REQUEST_METHOD"]=="GET" && !empty($_GET['agentID'])){
+    $agentID=$_GET['agentID'];
+    getAgentDetails($agentID);
+    include_once('../View/viewAgents.php');
+}
+else if($_SERVER["REQUEST_METHOD"]=="POST"){
+    $agentID=$_POST['agentID'];
+    deleteAgent($agentID);
+}
+else {
 showClientName($id);
 showTeamLead($id);
 assignLead();
+showAgentToAdmin();
 showCustomerNames($id);
 showTicketsToAgents($id);
+}
 ?>

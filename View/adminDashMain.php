@@ -135,7 +135,7 @@ priority
 <script>
 var yValues=ticketArray;
 var xValues=clientArray;
-const barColors=["#2eade2","#F16725","#e2136e","#16C1F3"];
+const barColors=["#2eade2","#F16725","#e2136e","#16C1F3"," #21AA47"];
 new Chart("clientTicketChart",{
         type:"bar",
         data :{

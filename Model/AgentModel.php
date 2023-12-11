@@ -45,4 +45,44 @@ function showAgentToAdmin(){
   $agentSQL="SELECT * FROM agent";
   $agentInfo=mysqli_query($link,$agentSQL);
 }
+function getAgentDetails($agentID){
+  include "../Configuration/database.php";
+  global $agentInfo,$agentRow,$leadRow,$totalTicketRow,$assignedTicketRow,$resolvedTicketRow,$avgResTimeRow,$allAgents,$allAgentInfo;
+  $agentSQL="SELECT * FROM agent WHERE agentID='$agentID'";
+  $agentInfo=mysqli_query($link,$agentSQL);
+  $agentRow=mysqli_fetch_array($agentInfo,MYSQLI_ASSOC);
+  $leadSQL="SELECT team_lead.leadID,team_lead.lead_fname AS lead_Fname,team_lead.lead_lname AS lead_Lname
+   FROM agent JOIN team_lead ON team_lead.leadID=agent.teamleadID WHERE agent.agentID='$agentID';";
+  $leadInfo=mysqli_query($link,$leadSQL);
+  $leadRow=mysqli_fetch_array($leadInfo,MYSQLI_ASSOC);
+  $totalTicket="SELECT agent.agentID,COUNT(tickets.ticketID) AS totalTickets FROM agent JOIN tickets ON agent.agentID=tickets.agentID WHERE agent.agentID='$agentID';";
+  $totalTicketInfo=mysqli_query($link,$totalTicket);
+  $totalTicketRow=mysqli_fetch_array($totalTicketInfo,MYSQLI_ASSOC);
+  $assignedTickets= "SELECT agent.agentID,COUNT(tickets.ticketID) AS assignedTickets FROM agent
+   JOIN tickets ON agent.agentID=tickets.agentID WHERE agent.agentID='$agentID'AND status='Open';";
+  $assignedTicketInfo=mysqli_query($link,$assignedTickets);
+  $assignedTicketRow=mysqli_fetch_array($assignedTicketInfo,MYSQLI_ASSOC);
+  $resolvedTickets="SELECT agent.agentID,COUNT(tickets.ticketID) AS resolvedTickets FROM agent
+  JOIN tickets ON agent.agentID=tickets.agentID WHERE agent.agentID='$agentID'AND status='Close';";
+  $resolvedTicketInfo=mysqli_query($link,$resolvedTickets);
+  $resolvedTicketRow=mysqli_fetch_array($resolvedTicketInfo,MYSQLI_ASSOC);
+  $avgeResTime="SELECT ticketID,AVG(TIMESTAMPDIFF(HOUR, created_at, updated_at)) AS resolution_time_in_Hrs
+  FROM tickets WHERE agentID='$agentID';";
+  $avgResTimeInfo=mysqli_query($link,$avgeResTime);
+  $avgResTimeRow=mysqli_fetch_array($avgResTimeInfo,MYSQLI_ASSOC);
+  $allAgentSql="SELECT * FROM agent";
+  $allAgentInfo=mysqli_query($link,$allAgentSql);
+}
+function deleteAgent($agentID){
+  include "../Configuration/database.php";
+  $sql="DELETE FROM agent WHERE agentID='$agentID'";
+  $sqlResult=mysqli_query($link,$sql);
+  if($sqlResult){
+      echo "Done";
+      header("Location:../View/agentAdmin.php");
+  }
+  else{
+    echo "Error";
+  }
+}
 ?>

@@ -33,13 +33,9 @@ include "../Controller/adminController.php";
       <td>
         <div class="d-flex justify-content-between">
 
-            <form action="" method="GET">
-                <input type="hidden" name="agentID" value="<?php ?>">
-                <button type="submit" class="btn btn-success">View Agent Details</button>
-            </form>
-            <form action="" method="GET">
-                <input type="hidden" name="agentID" value="<?php ?>">
-                <button type="submit" class="btn btn-success">Delete Agent</button>
+            <form action="../Controller/AgentController.php" method="GET">
+                <input type="hidden" name="agentID" value="<?php echo $agentRow["agentID"]; ?>">
+                <button type="submit" class="btn" style="background-color:cornflowerblue">View Agent Details</button>
             </form>
        </div>
       </td>

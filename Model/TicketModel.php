@@ -160,4 +160,13 @@ function deleteTicket($deleteTicketID){
         header("Location:../View/allTickets.php");
     }
 }
+function updateTicketAgent($oldAgentID,$newAgentID){
+    include "../Configuration/database.php";
+    $sql="UPDATE `tickets` SET `agentID` = '$newAgentID' WHERE `tickets`.`agentID` ='$oldAgentID';";
+    $sqlRes=mysqli_query($link,$sql);
+    if($sqlRes){
+        echo "Done";
+        header( 'Location: ' . $_SERVER['HTTP_REFERER'] );
+    }
+}
 ?>

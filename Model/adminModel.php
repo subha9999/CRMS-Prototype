@@ -69,4 +69,5 @@ function getTicketStatus(){
     $status_count[1]=$openRow['openTickets'];
     return $status_count;
 }
+
 ?>

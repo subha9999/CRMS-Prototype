@@ -8,7 +8,7 @@ if($_SERVER["REQUEST_METHOD"]=="GET" && !empty($_GET['ticketID'])){
     getTicketDetails($ticketID);    
     include ('../View/viewTicket.php');
 }
-if($_SERVER["REQUEST_METHOD"]=="POST" && !empty($_POST['customer'])){
+else if($_SERVER["REQUEST_METHOD"]=="POST" && !empty($_POST['customer'])){
 $customer_id=$_POST['customer'];
 $priority=$_POST['priority'];
 $subject=$_POST['subject'];
@@ -32,5 +32,9 @@ else if($_SERVER["REQUEST_METHOD"]=="POST" && !empty( $_POST["hiddenTicketID"]))
     $deleteTicketID=$_POST["hiddenTicketID"];
     deleteTicket($deleteTicketID);
 }
-
+else if($_SERVER["REQUEST_METHOD"]=="GET" && !empty( $_GET["oldAgentID"] ) ){
+    $oldAgentID=$_GET["oldAgentID"];
+    $newAgentID=$_GET["newAgentID"];
+    updateTicketAgent($oldAgentID,$newAgentID);
+}
 ?>
