@@ -44,8 +44,8 @@
   background-color:  #ddf0f0;
   }
  .fixed-sidebar{
-    max-height: 100vh;
-    background-color:#9932CC ;
+    height: 100vh;
+    background-color:#782b90 ;
     box-sizing:border-box;
 }
 .teamLead{

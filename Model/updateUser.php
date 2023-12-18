@@ -44,11 +44,11 @@ function updateName($firstName,$lastName,$id){
             $_SESSION['Fname']=$admin_row['admin_fname'];
             $_SESSION['Lname']=$admin_row['admin_lname'];
             echo $_SESSION['Fname']." ".$_SESSION['Lname'];
-            header('Refresh:1,URL=../View/adminProfile.php');
+            header('Refresh:0.2,URL=../View/adminProfile.php');
         }
     }
     else{
-        echo "Failed to update";
+        echo '<script>alert("Failed to update")</script>';
     }
 }
 
@@ -78,7 +78,7 @@ else if($id==$agentid){
         }
     }
     else{
-        echo "Failed to update";
+        echo '<script>alert("Failed to update")</script>';
     }
 
 }
@@ -107,7 +107,7 @@ else if($id==$leadid){
         }
     }
     else{
-        echo "Failed to update";
+        echo '<script>alert("Failed to update")</script>';
     }
 
 }
@@ -136,7 +136,7 @@ else if($id==$clientid){
         }
     }
     else{
-        echo "Failed to update";
+        echo '<script>alert("Failed to update")</script>';
     }
 
 }
@@ -192,7 +192,7 @@ function updateContact($contact,$email,$id){
             }
         }
         else{
-            echo "Failed to update";
+            echo '<script>alert("Failed to update")</script>';
         }
     }
 
@@ -221,7 +221,7 @@ function updateContact($contact,$email,$id){
             }
         }
         else{
-            echo "Failed to update";
+            echo '<script>alert("Failed to update")</script>';
         }
     
     }
@@ -250,7 +250,7 @@ function updateContact($contact,$email,$id){
             }
         }
         else{
-            echo "Failed to update";
+            echo '<script>alert("Failed to update")</script>';
         }
     
     }
@@ -279,7 +279,7 @@ function updateContact($contact,$email,$id){
             }
         }
         else{
-            echo "Failed to update";
+            echo '<script>alert("Failed to update")</script>';
         }
     
     }
@@ -346,22 +346,26 @@ function updatePassword($password,$newPassword,$confirmPassword,$id){
                 }
             }
             else{
-                echo "Failed to update";
+                echo '<script>alert("Failed to update")</script>';
+                header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
             }
         }
         else{
-            echo "<br>"."Your password should have one capital,one digit and should be atleast 8 characters long";
+            echo '<script>alert("<br>"."Your password should have one capital,one digit and should be atleast 8 characters long")</script>';
+            header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
         }
 
 
         }
         else{
-            echo "<br>"."Retype your new password again.";
+            echo '<script>alert("<br>"."Retype your new password again.")</script>';
+            header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
         }
        }
        else
        {
-        echo "<br>"."Your previous password is wrong";
+        echo '<script>alert("<br>"."Your previous password is wrong")</script>';
+        header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
        }
     }
     else if($id==$agentid){
@@ -385,22 +389,26 @@ function updatePassword($password,$newPassword,$confirmPassword,$id){
                  }
              }
              else{
-                 echo "Failed to update";
+                 echo '<script>alert("Failed to update")</script>';
+                 header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
              }
             }
             else{
-                echo "<br>"."Your password should have one capital,one digit and should be atleast 8 characters long";
+                echo '<script>alert("<br>"."Your password should have one capital,one digit and should be atleast 8 characters long")</script>';
+                header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
             }
     
  
          }
          else{
-             echo "<br>"."Retype your new password again.";
+             echo '<script>alert("<br>"."Retype your new password again.")</script>';
+             header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
          }
         }
         else
         {
-         echo "<br>"."Your previous password is wrong";
+         echo '<script>alert("<br>"."Your previous password is wrong")</script>';
+         header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
         }
      }
      else if($id==$leadid)
@@ -423,21 +431,25 @@ function updatePassword($password,$newPassword,$confirmPassword,$id){
                 }
             }
             else{
-                echo "Failed to update";
+                echo '<script>alert("Failed to update")</script>';
+                header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
             }
         }
         else{
             echo "<br>"."Your password should have one capital,one digit and should be atleast 8 characters long";
+            header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
         }
 
         }
         else{
             echo "<br>"."Retype your new password again.";
+            header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
         }
        }
        else
        {
         echo "<br>"."Your previous password is wrong";
+        header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
        }
      }
      else if($id==$clientid){
@@ -461,22 +473,26 @@ function updatePassword($password,$newPassword,$confirmPassword,$id){
                 }
                 else{
                     echo "Failed to update";
+                    header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
                 }
 
               }
               else{
-                echo "<br>"."Your password should have one capital,one digit and should be atleast 8 characters long";
+                echo '<script>alert("<br>"."Your password should have one capital,one digit and should be atleast 8 characters long")</script>';
+                header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
             }
     
 
             }
             else{
-                echo "<br>"."Retype your new password again.";
+                echo '<script>alert("<br>"."Retype your new password again.")</script>';
+                header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
             }
            }
            else
            {
-            echo "<br>"."Your previous password is wrong";
+            echo '<script>alert("<br>"."Your previous password is wrong")</script>';
+            header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
            }
                 
      }

@@ -20,7 +20,8 @@ function submitTicket($id,$priority,$customer_id,$creationDateAndTime,$ticketDes
     VALUES ('Open','$priority','$creationDateAndTime','$subject','$ticketDesc','$client_id','$id','$customer_id')";
     $ticketInfo=mysqli_query($link,$ticket);
     if($ticketInfo){
-        header ('Refresh: 1; URL =../View/agentDashboard.php');
+        echo '<script>alert("Done")</script>';
+        header ('Refresh: 0.2; URL =../View/agentDashboard.php');
     }
 }
 function showTicketsToAdmin(){
@@ -86,18 +87,14 @@ function showTicketsToAgents($id){
     $lowPriorityInfo=mysqli_query($link,$lowPriorityTicket);
     $lowPriority_row=mysqli_fetch_array($lowPriorityInfo,MYSQLI_ASSOC);
 }
-function submitTicketFromAdmin($id,$priority,$customer_id,$creationDateAndTime,$ticketDesc,$subject){
+function submitTicketFromAdmin($id,$customer_id,$creationDateAndTime,$ticketDesc,$subject,$client_id){
     include "../Configuration/database.php";
-    $client="SELECT clientID FROM customers
-    WHERE customerID = '$customer_id';";
-   $clientInfo=mysqli_query($link,$client);
-   $clientrow=mysqli_fetch_array($clientInfo,MYSQLI_ASSOC);
-   $client_id=$clientrow["clientID"];
     $ticket="INSERT INTO tickets (status,priority,created_at,subject,description,clientID,agentID,customerID)
-    VALUES ('Open','$priority','$creationDateAndTime','$subject','$ticketDesc','$client_id','$id','$customer_id')";
+    VALUES ('Open','high','$creationDateAndTime','$subject','$ticketDesc','$client_id','$id','$customer_id')";
     $ticketInfo=mysqli_query($link,$ticket);
     if($ticketInfo){
-        header ('Refresh: 1; URL =../View/adminTicket.php');
+        echo '<script>alert("Added a new Ticket")</script>';
+        header ('Refresh: 0.2; URL =../View/adminTicket.php');
     }
 }
 function getTickets( ){
@@ -133,22 +130,13 @@ function getTicketDetails($ticketID){
     $agentRow=mysqli_fetch_array($agentInfo,MYSQLI_ASSOC);
    
 }
-function changeStatus($ticketID,$newStatus,$updateDateandTime){
+function changeStatus($ticketID,$newStatus,$updateDateandTime,$remarks){
     include "../Configuration/database.php";
-    $sql="UPDATE tickets SET status='$newStatus',updated_at='$updateDateandTime' WHERE ticketID='$ticketID'";
+    $sql="UPDATE tickets SET status='$newStatus',updated_at='$updateDateandTime',remarks='$remarks' WHERE ticketID='$ticketID'";
     $sqlResult=mysqli_query($link,$sql);
     if($sqlResult){
-        echo "Done";
-        header("Location:../View/allTickets.php");
-    }
-}
-function changePriority($ticketID,$newPriority,$updateDateandTime){
-    include "../Configuration/database.php";
-    $sql="UPDATE tickets SET priority='$newPriority',updated_at='$updateDateandTime' WHERE ticketID='$ticketID'";
-    $sqlResult=mysqli_query($link,$sql);
-    if($sqlResult){
-        echo "Done";
-        header("Location:../View/allTickets.php");
+        echo '<script>alert("Done")</script>';
+        header("Refresh:0.2,URL=../View/allTickets.php");
     }
 }
 function deleteTicket($deleteTicketID){
@@ -156,8 +144,8 @@ function deleteTicket($deleteTicketID){
     $sql="DELETE FROM tickets WHERE ticketID='$deleteTicketID'";
     $sqlResult=mysqli_query($link,$sql);
     if($sqlResult){
-        echo "Done";
-        header("Location:../View/allTickets.php");
+        echo '<script>alert("Done")</script>';
+        header("Refresh:0.2,URL=../View/allTickets.php");
     }
 }
 function updateTicketAgent($oldAgentID,$newAgentID){
@@ -165,8 +153,8 @@ function updateTicketAgent($oldAgentID,$newAgentID){
     $sql="UPDATE `tickets` SET `agentID` = '$newAgentID' WHERE `tickets`.`agentID` ='$oldAgentID';";
     $sqlRes=mysqli_query($link,$sql);
     if($sqlRes){
-        echo "Done";
-        header( 'Location: ' . $_SERVER['HTTP_REFERER'] );
+        echo '<script>alert("Done")</script>';
+        header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
     }
 }
 ?>

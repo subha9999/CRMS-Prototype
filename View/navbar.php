@@ -9,12 +9,6 @@ include("../Controller/session.php");
     </button>
     <a class="navbar-brand px-3" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
       <img src="../Images/Genex-Logo.png" width=150px></a>
-    <form class="d-flex">
-        <input class="form-control-lg me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-dark" type="submit" ><span class="material-symbols-outlined">
-search
-</span></button>
-      </form>
     <ul class="nav justify-content-end">
   <li class="nav-item">
   <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#alertModal">

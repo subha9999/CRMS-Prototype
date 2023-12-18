@@ -14,15 +14,7 @@ include ("../Controller/AgentController.php");
         <form action="../Controller/ticketController.php" method="POST">
         <div class="row g-3 px-3 py-3">
   <div class="col-4">
-  <label for="customerName" class="form-label">Select Customer</label><br>
-    <select class="prioritybutton px-4 py-2 rounded-2" name="customer">
-    <option>Select</option>
-<?php
-while($customer_row=mysqli_fetch_assoc($customerInfo)){
-    echo '<option value='.$customer_Id=$customer_row['customerID'].'>'.$customer_row['customer_fname']." ". $customer_row["customer_lname"].'</option>';
-    };
-?>
-</select>
+  
 </div>
 </div>
 <div class="row px-3 py-2">

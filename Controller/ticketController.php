@@ -20,14 +20,10 @@ else if($_SERVER["REQUEST_METHOD"]=="POST" && !empty( $_POST["status"])){
     $newStatus=$_POST['status'];
     $ticketID=$_POST['hiddenTicketID'];
     $updateDateandTime=$_POST['updateDate'];
-    changeStatus($ticketID,$newStatus,$updateDateandTime);
+    $remarks=$_POST['remarks'];
+    changeStatus($ticketID,$newStatus,$updateDateandTime,$remarks);
 }
-else if($_SERVER["REQUEST_METHOD"]=="POST" && !empty( $_POST["priority"])){
-    $newPriority=$_POST['priority'];
-    $ticketID=$_POST['hiddenTicketID'];
-    $updateDateandTime=$_POST['updateDate'];
-    changePriority($ticketID,$newPriority,$updateDateandTime);
-}
+
 else if($_SERVER["REQUEST_METHOD"]=="POST" && !empty( $_POST["hiddenTicketID"])){
     $deleteTicketID=$_POST["hiddenTicketID"];
     deleteTicket($deleteTicketID);

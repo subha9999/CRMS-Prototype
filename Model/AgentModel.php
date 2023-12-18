@@ -24,19 +24,22 @@ function addNewAgent($firstName,$lastName,$email,$number,$password,$re_password,
   VALUES ('$userID','$firstName','$lastName','$email','$password','$number','Agent','$leadID')";
   $newAgent=mysqli_query($link,$newAgentSQL);
   if($newAgent){
-    echo "Done";
-    header('Refresh:0.2, URL=../View/adminDashboard.php');
+    echo '<script>alert("Added a new user")</script>';
+    header('Refresh:0.2, URL=../View/agentAdmin.php');
   }
 }
   else{
-    echo "Failed to add";
+    echo '<script>alert("Failed to add")</script>';
+    header( 'Refresh:0.2, URL= ' . $_SERVER['HTTP_REFERER'] );
   }
   }
   else if($validforPassword==false){
-    echo "Password should be minimum 8 characters long and should have atleast 1 capital letter.";
+    echo '<script>alert("Password should be minimum 8 characters long and should have atleast 1 capital letter.")</script>';
+    header( 'Refresh:0.2, URL= ' . $_SERVER['HTTP_REFERER'] );
   }
   else {
-    echo "Retype your password again";
+    echo '<script>alert("Retype your password again")</script>';
+    header( 'Refresh:0.2, URL=' . $_SERVER['HTTP_REFERER'] );
   }
 }
 function showAgentToAdmin(){
@@ -75,14 +78,52 @@ function getAgentDetails($agentID){
 }
 function deleteAgent($agentID){
   include "../Configuration/database.php";
+  $info="SELECT * FROM agent WHERE agentID='$agentID'";
+  $res=mysqli_query($link,$info);
+  $row=mysqli_fetch_array($res,MYSQLI_ASSOC);
+  $userID=$row["userID"];
   $sql="DELETE FROM agent WHERE agentID='$agentID'";
   $sqlResult=mysqli_query($link,$sql);
   if($sqlResult){
-      echo "Done";
-      header("Location:../View/agentAdmin.php");
+    $del="DELETE FROM users WHERE userID='$userID'";
+  $delRes=mysqli_query($link,$del);
+  if($delRes){
+    echo '<script>alert("Done")</script>';
+    header("Refresh:0.2,URL=../View/agentAdmin.php");
   }
+}
   else{
     echo "Error";
   }
+}
+function updateAgentLead($oldLeadID,$newLeadID){
+  include "../Configuration/database.php";
+  $sql="UPDATE `agent` SET `teamleadID` = '$newLeadID' WHERE agent.teamleadID ='$oldLeadID';";
+    $sqlRes=mysqli_query($link,$sql);
+    if($sqlRes){
+        echo '<script>alert("Done")</script>';
+        header( 'Refresh:0.2,URL=' . $_SERVER['HTTP_REFERER'] );
+    }
+  
+}
+function getAgentCount(){
+  include "../Configuration/database.php";
+  global $agentCount;
+  $leadID=array();
+  $agentCount=array();
+  $sql="SELECT * FROM team_lead";
+  $result=mysqli_query($link,$sql);
+  while($row=mysqli_fetch_assoc($result)){
+    $leadID[]=$row["leadID"];
+  }
+  foreach($leadID as $value){
+    $sql1="SELECT COUNT(agentID) AS agentCount FROM agent WHERE teamleadID='$value'";
+    $res=mysqli_query($link,$sql1);
+    while($row1=mysqli_fetch_assoc($res)){
+      $agentCount[]=$row1["agentCount"];
+    }
+  }
+  return $agentCount;
+
 }
 ?>

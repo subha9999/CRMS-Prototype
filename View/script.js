@@ -1,21 +1,17 @@
-var id=userID;
+
 function showTicketForm(){
     console.log("Showing the ticket form");
     $("#showForm").load("ticketForm.php");
         
 }
-function goBack(let) {
-    console.log("Going Back");
-    if (let>=300 && let==id)
-    {
+function goBackToAgent() {
     $("#showForm").load("agentDashMain.php");
-    }
-    else if(let==105 && let==id)
-    {
-        location.reload();
-         $("#showForm").load("adminDashMain.php");
-    }
     
+}
+function goBackToAdmin(){
+    console.log("Going Back");
+    location.reload();
+    $("#showForm").load("adminDashMain.php");
 }
 function showAddUserForm(){
     console.log("Showing the add user form");
@@ -44,5 +40,35 @@ function goBackToadminTicket(){
     $("#adminTicket").load("adminTicket.php #target");
 }
 function confirmBeforeDelete(){
-    confirm("Are you sure you want to delete?");
+    var confirmation = confirm("Are you sure you want to delete this ticket?");
+    if (confirmation) {
+        document.getElementById("deleteTicketForm").submit();
+    } 
+
+}
+function updateDistricts(){
+    var districtData={
+        "Chittagong":["Bandarban","Brahmanbaria","Chandpur","Chittagong","Comilla","Cox's Bazar","Feni","Khagrachhari","Lakshmipur"],
+        "Dhaka":["Dhaka","Faridpur","Gazipur","Gopalganj","Kishoreganj","Madaripur","Manikganj","Munshiganj","Narayanganj","Narsingdi","Rajbari","Shariatpur","Tangail"],
+        "Khulna":["Bagerhat","Chuadanga","Jashore","Jhenaidah","Khulna","Kushtia","Magura","Meherpur","Narail","Satkhira"],
+        "Rajshahi":["Bogura","Joypurhat","Naogaon","Natore","Chapai Nawabganj","Pabna","Rajshahi","Sirajganj"],
+        "Barisal":["Barguna","Barishal","Bhola","Jhalokati","Patuakhali","Pirojpur"],
+        "Mymensingh":["Jamalpur","Mymensingh","Netrokona","Sherpur"],
+        "Rangpur":["Dinajpur","Gaibandha","Kurigram","Lalmonirhat","Nilphamari","Panchagarh","Rangpur","Thakurgaon"],
+        "Sylhet":["Habiganj","Moulvibazar","Sunamganj","Sylhet"]
+    };
+    var selectedDivision = document.getElementById("division").value;
+    var districtDropdown = document.getElementById("district");
+    districtDropdown.innerHTML = "";
+    if (districtData.hasOwnProperty(selectedDivision)) {
+        districtData[selectedDivision].forEach(function (district) {
+            var option = document.createElement("option");
+            option.text = district;
+            districtDropdown.add(option);
+        });
+    } else {
+        var option = document.createElement("option");
+        option.text = "Select a Division First";
+        districtDropdown.add(option);
+    }
 }

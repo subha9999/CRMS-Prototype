@@ -2,7 +2,7 @@
 <!-- 1st row-->
 <div class="row px-2 py-1">
     <div class="col-4">
-    <button type="button" class="btn btn-info"  onclick="goBack(<?php echo $ID;?>)">Go back</button>
+    <button type="button" class="btn btn-info"  onclick="goBackToAdmin()">Go back</button>
     </div>
 </div>
 <!--2nd row-->

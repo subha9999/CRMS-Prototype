@@ -1,12 +1,12 @@
 <?php
 include("../Controller/session.php");
-$_POST['id']=$ID;
-$id=$_POST['id'];
 include_once ('../Model/clientModel.php');
 include_once ('../Model/leadModel.php');
 include_once ("../Model/customerModel.php");
 include_once ("../Model/TicketModel.php");
 include_once ("../Model/AgentModel.php");
+$_POST['id']=$ID;
+$id=$_POST['id'];
 if(($_SERVER["REQUEST_METHOD"]=="POST") && !empty($_POST['firstName'])){
     $firstName=$_POST['firstName'];
     $lastName=$_POST['lastName'];
@@ -22,16 +22,14 @@ else if($_SERVER["REQUEST_METHOD"]=="GET" && !empty($_GET['agentID'])){
     getAgentDetails($agentID);
     include_once('../View/viewAgents.php');
 }
-else if($_SERVER["REQUEST_METHOD"]=="POST"){
+else if($_SERVER["REQUEST_METHOD"]=="POST" && !empty($_POST['agentID'])){
     $agentID=$_POST['agentID'];
     deleteAgent($agentID);
 }
-else {
+else{
 showClientName($id);
 showTeamLead($id);
-assignLead();
 showAgentToAdmin();
-showCustomerNames($id);
 showTicketsToAgents($id);
 }
 ?>

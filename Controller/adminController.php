@@ -16,8 +16,6 @@ include ("../Model/adminModel.php");
 getClientCompany();
 getTicketDistribution();
 getTicketPriority();
-include ("../Model/customerModel.php");
-showCustomerNamesToAdmin();
 include ("../Model/leadModel.php");
 showLeadToAdmin();
 include ("../Model/AgentModel.php");
@@ -26,10 +24,9 @@ include ("../Model/clientModel.php");
 showClientToAdmin();
 ?>
 <script>
-    var clientArray=<?php echo json_encode(getClientCompany());?>;
-    var ticketArray=<?php echo json_encode(getTicketDistribution());?>;
     var priorityTicketArray=<?php echo json_encode(getTicketPriority());?>;
     var statusTicketArray=<?php echo json_encode(getTicketStatus());?>;
+    var usersArray=<?php echo json_encode(getUserDistribution());?>
 </script>
 <script src="../View/script.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.js"></script>

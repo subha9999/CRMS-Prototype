@@ -1,10 +1,4 @@
 <?php
-function assignLead(){
-    include ("../Configuration/database.php");
-    global $leadResult,$leadRow;
-    $leadSQL="SELECT leadID,lead_fname,lead_lname FROM `team_lead` ";
-    $leadResult=mysqli_query($link,$leadSQL);
-}
 function showTeamLead($id){
     include "../Configuration/database.php";
     global $lead_F_Name,$lead_L_Name,$lead_email,$lead_contact, $client_name;
@@ -53,19 +47,22 @@ function addNewLead($firstName,$lastName,$email,$number,$password,$re_password,$
     VALUES ('$userID','$firstName','$lastName','Team Lead','$email','$password','$number','$clientID')";
     $newLeadResult=mysqli_query($link,$newLead);
   if($newLeadResult){
-    echo "Done";
-    header('Refresh:0.2, URL=../View/adminDashboard.php');
+    echo '<script>alert("Added a new user")</script>';
+    header('Refresh:0.2, URL=../View/leadAdmin.php');
   }
 }
   else{
-    echo "Failed to add";
+    echo '<script>alert("Failed to add")</script>';
+    header( 'Refresh:0.2, URL= ' . $_SERVER['HTTP_REFERER'] );
   }
   }
   else if($validforPassword==false){
-    echo "Password should be minimum 8 characters long and should have atleast 1 capital letter.";
+    echo '<script>alert("Password should be minimum 8 characters long and should have atleast 1 capital letter.")</script>';
+    header( 'Refresh:0.2, URL=' . $_SERVER['HTTP_REFERER'] );
   }
   else {
-    echo "Retype your password again";
+    echo '<script>alert("Retype your password again")</script>';
+    header( 'Refresh:0.2, URL= ' . $_SERVER['HTTP_REFERER'] );
   }
 }
 function showLeadToAdmin(){
@@ -74,5 +71,60 @@ function showLeadToAdmin(){
     $leadSQL="SELECT * FROM team_lead";
     $leadInfo=mysqli_query($link,$leadSQL);
 }
+function getLeadDetails($leadID){
+  include "../Configuration/database.php";
+  global $leadRow,$clientRow,$totalAgentRow,$totalTicketRow;
+  $leadSql="SELECT *FROM team_lead WHERE leadID='$leadID'";
+  $leadInfo=mysqli_query($link,$leadSql);
+  $leadRow=mysqli_fetch_array($leadInfo);
+  $clientSql="SELECT client.clientCompany AS client
+  FROM team_lead JOIN client ON team_lead.client_id = client.clientID WHERE team_lead.leadID='$leadID';";
+  $clientInfo=mysqli_query($link,$clientSql);
+  $clientRow=mysqli_fetch_array($clientInfo);
+  $totalAgents="SELECT COUNT(agent.agentID) AS totalAgents
+  FROM team_lead JOIN agent ON agent.teamleadID = team_lead.leadID WHERE team_lead.leadID='$leadID';";
+  $totalAgentInfo=mysqli_query($link,$totalAgents);
+  $totalAgentRow=mysqli_fetch_array($totalAgentInfo,MYSQLI_ASSOC);
+  $totalTicket="SELECT team_lead.leadID,COUNT(tickets.ticketID) AS totalTicketsHandled
+  FROM team_lead
+  JOIN agent ON team_lead.leadID = agent.teamleadID
+  JOIN tickets ON agent.agentID = tickets.agentID
+  WHERE team_lead.leadID = '$leadID'";
+  $totalTicketInfo=mysqli_query($link,$totalTicket);
+  $totalTicketRow=mysqli_fetch_array($totalTicketInfo,MYSQLI_ASSOC);
 
+}
+function deleteLead($leadID){
+  include "../Configuration/database.php";
+  $info="SELECT * FROM team_lead WHERE leadID='$leadID'";
+  $res=mysqli_query($link,$info);
+  $row=mysqli_fetch_array($res,MYSQLI_ASSOC);
+  $userID=$row["userID"];
+  $sql="DELETE FROM team_lead WHERE team_lead.leadID='$leadID'";
+  $sqlResult=mysqli_query($link,$sql);
+  if($sqlResult){
+  $del="DELETE FROM users WHERE userID='$userID'";
+  $delRes=mysqli_query($link,$del);
+  if($delRes){
+    echo '<script>alert("Done")</script>';
+    header("Refresh:0.2,URL=../View/leadAdmin.php");
+  }
+}
+  else{
+    echo "Error";
+  }
+}
+function getLeadAgents(){
+  include "../Configuration/database.php";
+  $leadID=array();
+  $sql="SELECT * FROM team_lead";
+  $result=mysqli_query($link,$sql);
+  while($row=mysqli_fetch_assoc($result)){
+    $leadID[]=$row["leadID"];
+  }
+
+  return $leadID;
+
+
+}
 ?>

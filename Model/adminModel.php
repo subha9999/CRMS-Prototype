@@ -69,5 +69,21 @@ function getTicketStatus(){
     $status_count[1]=$openRow['openTickets'];
     return $status_count;
 }
-
+function getUserDistribution(){
+    include '../Configuration/database.php';
+    $totalUsers=array();
+    $client="SELECT COUNT(clientID) AS noOfClients FROM client";
+    $res1=mysqli_query($link,$client);
+    $rowC=mysqli_fetch_array($res1,MYSQLI_ASSOC);
+    $lead="SELECT COUNT(leadID) AS noOfLeads FROM team_lead";
+    $res2=mysqli_query($link,$lead);
+    $rowL=mysqli_fetch_array($res2,MYSQLI_ASSOC);
+    $agent="SELECT COUNT(agentID) AS noOfAgents FROM agent";
+    $res3=mysqli_query($link,$agent);
+    $rowA=mysqli_fetch_array($res3,MYSQLI_ASSOC);
+    $totalUser[0]=$rowA["noOfAgents"];
+    $totalUser[1]=$rowL["noOfLeads"];
+    $totalUser[2]=$rowC["noOfClients"];
+    return $totalUser;
+}
 ?>

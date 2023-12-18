@@ -37,11 +37,11 @@
 <label for="leadName" class="form-label">Assign Team Lead</label>
 </div>
 <div class="col-6">
-    <select class="prioritybutton px-4 py-2 rounded-2" id="leadName" name="leadID">
-    <option>Select</option>
+<select class="prioritybutton px-4 py-2 rounded-2" id="leadName" name="leadID">   
+  <option>Select</option>
 <?php
-include ("../Controller/AgentController.php");
-while($leadRow=mysqli_fetch_assoc($leadResult)){
+include ("../Controller/adminController.php");
+while($leadRow=mysqli_fetch_assoc($leadInfo)){
     echo '<option value='.$leadRow['leadID'].'>'.$leadRow['lead_fname']." ". $leadRow["lead_lname"].'</option>';
     };
 ?>

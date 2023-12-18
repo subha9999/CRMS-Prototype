@@ -9,7 +9,7 @@
                         <div class="card-header rounded">
                             <img src="https://genexinfosys.com/images/Genex-Logo.png?v=1576746127" width=200px style="padding:15px">
                         </div>
-                        <div class="card-body rounded mx-5 " style="background-color:#9932CC ;height:18vh;">
+                        <div class="card-body rounded" style="background-color:#782b90;height:18vh;">
                         <form action="" method="POST">
                           <div class="mb-2">
                             <label for="userID" class="form-label">User ID</label><br>

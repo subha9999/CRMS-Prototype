@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-<!--Offcanvas sidebar-->
+
 
 <nav class="navbar navbar-expand-lg ">
 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,7 +15,7 @@ home
 </span> Home </a>
   </li>
   <li class="nav-item ">
-    <a class="nav-link text-dark"  href="#"><span class="material-symbols-outlined">
+    <a class="nav-link text-dark"  href="../View/clientAdmin.php"><span class="material-symbols-outlined">
 groups
 </span> Client </a>
   </li>
@@ -35,19 +35,19 @@ support_agent
 </span> Tickets</a>
   </li>
   <li class="nav-item ">
-    <a class="nav-link text-dark" href="#"><span class="material-symbols-outlined">
+    <a class="nav-link text-dark" href="../View/customerAdmin.php"><span class="material-symbols-outlined">
 contacts
 </span> Customers</a>
   </li>
   <li class="nav-item ">
-    <a class="nav-link text-dark" href="#"><span class="material-symbols-outlined">
+    <a class="nav-link text-dark" href="../View/reportAdmin.php"><span class="material-symbols-outlined">
 monitoring
 </span> Reports</a>
   </li>
   <li class="nav-item">
     <a class="nav-link text-dark" href="adminProfile.php"><span class="material-symbols-outlined">
 settings
-</span> Settings</a>
+</span> Profile</a>
   </li>
   <li class="nav-item ">
     <a class="nav-link text-dark" href="../index.php?action=logout"><span class="material-symbols-outlined">

@@ -13,7 +13,7 @@ include "../Controller/adminController.php";
       <!--1st row-->
 <div class="container py-2 px-3">
 <div class="container pt-2 bg-light">
-<table class="table border-dark px-2 py-2" id="agentsTable">
+<table class="table border-dark px-2 py-2" id="agentTable">
   <thead style="background-color:darkturquoise">
     <tr>
       <th scope="col">Agent ID</th>
@@ -35,7 +35,7 @@ include "../Controller/adminController.php";
 
             <form action="../Controller/AgentController.php" method="GET">
                 <input type="hidden" name="agentID" value="<?php echo $agentRow["agentID"]; ?>">
-                <button type="submit" class="btn" style="background-color:cornflowerblue">View Agent Details</button>
+                <button type="submit" class="btn" style="background-color:cornflowerblue">View Details</button>
             </form>
        </div>
       </td>
@@ -49,11 +49,11 @@ include "../Controller/adminController.php";
   </div>
   </div>
   <!--Script-->
-  <script>$('#agentsTable').DataTable({
+  <script>$('#agentTable').DataTable({
     pagingType:'full',
     lengthMenu: [
-        [8,10, 25, 50, -1],
-        [8,10, 25, 50, 'All']
+        [7,10, 25, 50, -1],
+        [7,10, 25, 50, 'All']
     ]
   });
 </script>

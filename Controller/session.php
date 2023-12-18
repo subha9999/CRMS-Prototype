@@ -22,7 +22,5 @@ $userEmail=$_SESSION['email'];
 $pass=$_SESSION['password'];
 json_encode($_SESSION['id']);
 ?>
-<script>
-    var userID=<?php echo json_encode($_SESSION['id']); ?>;
-</script>
+
 <script src="../View/script.js"></script>
