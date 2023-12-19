@@ -91,16 +91,53 @@ function totalTicket(){
     $ticket=array();
     $sql_1="SELECT COUNT(ticketID) AS totalTickets FROM tickets";
     $res_1=mysqli_query($link,$sql_1);
-    $row_1=mysqli_fetch_array($res_1,MYSQLI_ASSOC);
-    $sql_2="SELECT COUNT(ticketID) AS openTickets FROM tickets WHERE status='open'";
-    $res_2=mysqli_query($link,$sql_2);
-    $row_2=mysqli_fetch_array($res_2,MYSQLI_ASSOC);
-    $sql_3="SELECT COUNT(ticketID) AS closeTickets FROM tickets WHERE status='close'";
-    $res_3=mysqli_query($link,$sql_3);
-    $row_3=mysqli_fetch_array($res_3,MYSQLI_ASSOC);
-    $ticket[0]=$row_1['totalTickets'];
-    $ticket[1]=$row_2['openTickets'];
-    $ticket[2]=$row_3['closeTickets'];
+    $row=mysqli_fetch_array($res_1,MYSQLI_ASSOC);
+    foreach(range(1,$row['totalTickets']) as $key){
+        $ticket[]=$key;
+    }
     return $ticket;
+}
+function allTicket(){
+    include '../Configuration/database.php';
+    $t_ticket=array();
+    $sql_1="SELECT COUNT(ticketID) AS totalTickets FROM tickets";
+    $res_1=mysqli_query($link,$sql_1);
+    $row=mysqli_fetch_array($res_1,MYSQLI_ASSOC);
+    foreach(range(1,$row['totalTickets']) as $key){
+        $t_ticket[]=$key;
+    }
+    return $t_ticket;
+}
+function openTicket(){
+    include '../Configuration/database.php';
+    $o_ticket=array();
+    $sql_1="SELECT COUNT(ticketID) AS openTickets FROM tickets WHERE status='open'";
+    $res_1=mysqli_query($link,$sql_1);
+    $row=mysqli_fetch_array($res_1,MYSQLI_ASSOC);
+    foreach(range(1,$row['openTickets']) as $key){
+        $o_ticket[]=$key;
+    }
+    return $o_ticket;
+}
+function closeTicket(){
+    include '../Configuration/database.php';
+    $c_ticket=array();
+    $sql_1="SELECT COUNT(ticketID) AS Tickets FROM tickets WHERE status='close'";
+    $res_1=mysqli_query($link,$sql_1);
+    $row=mysqli_fetch_array($res_1,MYSQLI_ASSOC);
+    foreach(range(1,$row['Tickets']) as $key){
+        $c_ticket[]=$key;
+    }
+    return $c_ticket;
+}
+function getCreationDate(){
+    include '../Configuration/database.php';
+    $creationDate=array();
+    $sql="SELECT DATE(created_at) AS date FROM tickets";
+    $res=mysqli_query($link,$sql);
+    while($row=mysqli_fetch_assoc($res)){
+        $creationDate[]=$row['date'];
+    }
+    return $creationDate;
 }
 ?>

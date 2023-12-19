@@ -31,13 +31,8 @@ include "../Controller/reportController.php";
     <option value="open">Open</option>
     <option value="close">Close</option>
   </select>
-  <select role="button" class="btn btn-info mx-3" name="downloadType" required>
-  <option >Select</option>
-    <option value="ticketCSV">Download a CSV file</option>
-    <option value="ticketXLSX">Download a XLSX file</option>
-  </select>
   <br><br>
-  <input type="submit" role="button" class="btn btn-info">
+  <input type="submit" role="button" class="btn btn-info" value="Download File">
   </form>
 </div> 
   </div>

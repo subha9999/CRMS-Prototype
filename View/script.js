@@ -39,13 +39,7 @@ function goBackToadminTicket(){
     location.reload();
     $("#adminTicket").load("adminTicket.php #target");
 }
-function confirmBeforeDelete(){
-    var confirmation = confirm("Are you sure you want to delete this ticket?");
-    if (confirmation) {
-        document.getElementById("deleteTicketForm").submit();
-    } 
 
-}
 function updateDistricts(){
     var districtData={
         "Chittagong":["Bandarban","Brahmanbaria","Chandpur","Chittagong","Comilla","Cox's Bazar","Feni","Khagrachhari","Lakshmipur"],
@@ -74,4 +68,8 @@ districtDropdown.add(selectOption);
         option.text = "Select a Division First";
         districtDropdown.add(option);
     }
+}
+function goBackToPrev() {
+    // Use history.back() to go back one step in the session history
+    window.history.back();
 }
