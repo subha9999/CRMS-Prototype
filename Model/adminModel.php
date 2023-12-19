@@ -86,4 +86,21 @@ function getUserDistribution(){
     $totalUser[2]=$rowC["noOfClients"];
     return $totalUser;
 }
+function totalTicket(){
+    include '../Configuration/database.php';
+    $ticket=array();
+    $sql_1="SELECT COUNT(ticketID) AS totalTickets FROM tickets";
+    $res_1=mysqli_query($link,$sql_1);
+    $row_1=mysqli_fetch_array($res_1,MYSQLI_ASSOC);
+    $sql_2="SELECT COUNT(ticketID) AS openTickets FROM tickets WHERE status='open'";
+    $res_2=mysqli_query($link,$sql_2);
+    $row_2=mysqli_fetch_array($res_2,MYSQLI_ASSOC);
+    $sql_3="SELECT COUNT(ticketID) AS closeTickets FROM tickets WHERE status='close'";
+    $res_3=mysqli_query($link,$sql_3);
+    $row_3=mysqli_fetch_array($res_3,MYSQLI_ASSOC);
+    $ticket[0]=$row_1['totalTickets'];
+    $ticket[1]=$row_2['openTickets'];
+    $ticket[2]=$row_3['closeTickets'];
+    return $ticket;
+}
 ?>

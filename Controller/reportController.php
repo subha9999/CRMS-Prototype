@@ -2,44 +2,19 @@
 include ("../Model/AgentModel.php");
 include ("../Model/leadModel.php");
 include ("../Model/reportModel.php");
-if(isset($_GET['downloadType'])){
-    $downloadType=$_GET['downloadType'];
-switch($downloadType){
-    case 'agentCSV':
-       agentDetailsCSV();
-       break;
-    case 'agentXLSX':
-        agentDetailsXLSX();
-        break;
-    case 'leadCSV':
-        leadDetailsCSV();
-        break;
-    case 'clientCSV':
-        clientDetailsCSV();
-        break;
-    case 'ticketCSV':
-        ticketDetailsCSV();
-        break;
-    case 'customerCSV':
-        customerDetailsCSV();
-        break;
-    case 'leadXLSX':
-        leadDetailsXLSX();
-        break;
-    case 'customerXLSX':
-        customerDetailsXLSX();
-        break;
-    case 'clientXLSX':
-        clientDetailsXLSX();
-        break;
-    case 'ticketXLSX':
-        ticketDetailsXLSX();
-        break;
-    default:
-    echo "Invalid Download Type";
-    break; 
+if($_SERVER["REQUEST_METHOD"]=="POST"){
+    $downloadType=$_POST['downloadType'];
+    $ticketType=$_POST['ticketType'];
+    $from=$_POST['from'];
+    $to=$_POST['to'];
+    if($downloadType=='ticketCSV'){
+            ticketDetailsCSV($to,$from,$ticketType);
+    }
+    else if($downloadType=='ticketXLSX'){
+            ticketDetailsXLSX($to,$from,$ticketType);
+    }
 }
-}
+
 ?>
 <script>
     var leadArray=<?php echo json_encode(getLeadAgents());?>;

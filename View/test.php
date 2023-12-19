@@ -1,14 +1,24 @@
 <?php
-echo $_GET['customer_fname'].
-" ".$_GET['customer_lname']." ".$_GET['email']." ".$_GET['contact']." ".$_GET['division']." ".$_GET['district']." ".$_GET['address'];
-$customer_fname=$_GET['customer_fname'];
-$customer_lname=$_GET['customer_lname'];
-$email=$_GET['email'];
-$contact=$_GET['contact'];
-$division=$_GET['division'];
-$district=$_GET['district'];
-$address=$_GET['address'];
-include "../Controller/customerController.php";
-$id=checkCustomer($customer_fname,$customer_lname,$email,$contact,$division,$district,$address);
-echo $id;
+include "../View/header.php";
+include ("../Model/adminModel.php");
+echo json_encode(totalTicket());
 ?>
+
+<canvas id="ticketChart" style="max-width:40rem;max-height:20rem;"></canvas>
+
+<script>
+var ticketArray=<?php echo json_encode(totalTicket());?>;
+console.log(ticketArray);
+var xValues=ticketArray;
+var yValues=['Total Tickets','Open Tickets','Closed Tickets'];
+new chart("ticketChart",{
+  type:bar,
+  data:{
+    labels:xValues,
+    datasets:[{
+      backgroundColor:"14466F",
+      data:yValues,
+      label:'Tickets Distribution'
+    }]
+  }
+})</script>

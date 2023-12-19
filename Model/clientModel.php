@@ -104,24 +104,5 @@ function getClientDetails($clientID){
   $totalLeadRow=mysqli_fetch_array($totalLeadsInfo,MYSQLI_ASSOC);
   
 }
-function deleteClient($clientID){
-  include "../Configuration/database.php";
-  $info="SELECT * FROM client WHERE clientID='$clientID'";
-  $res=mysqli_query($link,$info);
-  $row=mysqli_fetch_array($res,MYSQLI_ASSOC);
-  $userID=$row["userID"];
-  $sql="DELETE FROM client WHERE clientID='$clientID'";
-  $sqlResult=mysqli_query($link,$sql);
-  if($sqlResult){
-  $del="DELETE FROM users WHERE userID='$userID'";
-  $delRes=mysqli_query($link,$del);
-  if($delRes){
-    echo '<script>alert("Done")</script>';
-    //header("Refresh:0.2,URL=../View/clientAdmin.php");
-  }
-}
-  else{
-    echo "Error";
-  }
-}
+
 ?>

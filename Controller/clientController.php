@@ -17,10 +17,6 @@ else if($_SERVER["REQUEST_METHOD"]=="GET" &&  !empty($_GET['clientID'])){
     getClientDetails($clientID);
     include ('../View/viewClient.php');
 }
-else if($_SERVER["REQUEST_METHOD"]=="POST" && !empty($_POST['clientID'])){
-    $clientID=$_POST['clientID'];
-    deleteClient($clientID);
-}
 ?>
 <script>
     var clientArray=<?php echo json_encode(getClientCompany());?>;

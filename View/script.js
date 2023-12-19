@@ -60,6 +60,9 @@ function updateDistricts(){
     var selectedDivision = document.getElementById("division").value;
     var districtDropdown = document.getElementById("district");
     districtDropdown.innerHTML = "";
+    var selectOption = document.createElement("option");
+selectOption.text = "Select";
+districtDropdown.add(selectOption);
     if (districtData.hasOwnProperty(selectedDivision)) {
         districtData[selectedDivision].forEach(function (district) {
             var option = document.createElement("option");

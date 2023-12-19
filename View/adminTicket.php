@@ -26,16 +26,16 @@ include "../Controller/adminController.php";
 <div class="container bg-light" >
   <div class="row py-5">
   <h6>Total Number of Tickets:<?php echo $totalTicket_row["total_no_of_tickets"];?></h6>
-    <div class="col-6">
+    <div class="col">
     <figure class="figure px-5 ">
     <figcaption class="figure-caption py-5 text-center">Tickets Distribution by Priority</figcaption>
-<canvas id="priorityTicketChart" style="max-width:40rem;max-height:20rem"></canvas>
+<canvas id="priorityTicketChart" style="max-width:100vw;max-height:50vh"></canvas>
 </figure>
 </div>
-<div class="col-6">
+<div class="col">
 <figure class="figure px-5 ">
 <figcaption class="figure-caption py-5 text-center">Tickets Distribution by Status</figcaption>
-<canvas id="statusTicketChart" style="max-width:40rem;max-height:20rem"></canvas>
+<canvas id="statusTicketChart" style="max-width:100vw;max-height:50vh"></canvas>
 </figure>
 </div>
 </div>
