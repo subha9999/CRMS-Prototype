@@ -51,6 +51,17 @@ new Chart("myChart",{
                 label:'No. of Agents per Lead'
             }]
         },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true,
+                precision: 0 ,
+                ticks:{
+                  stepSize:1
+            }
+          }
+        }
+    }
 });
 </script>
 
