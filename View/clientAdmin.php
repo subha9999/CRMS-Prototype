@@ -62,6 +62,17 @@ new Chart("clientTicketChart",{
                 label:'Tickets distribution by Client'
             }]
         },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true,
+                precision: 0,
+                ticks: {
+                    stepSize: 1
+                }
+            }
+        }
+      }
 });
 $('#clientTable').DataTable({
     pagingType:'full',
