@@ -8,6 +8,13 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $to=$_POST['to'];
     ticketDetailsXLSX($to,$from,$ticketType);
 }
+else if($_SERVER["REQUEST_METHOD"]=="GET" && !empty($_GET['agentID'])){
+    $ticketType=$_GET['ticketType'];
+    $id=$_GET['agentID'];
+    $from=$_GET['from'];
+    $to=$_GET['to'];
+    agent_ticketDetailsXLSX($to,$from,$ticketType,$id);
+}
 
 ?>
 <script>

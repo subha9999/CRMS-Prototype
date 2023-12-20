@@ -12,7 +12,7 @@ include "navbar.php"; ?>
  <!--1st row-->
  <div class="row px-2 py-3">
     <div class="col">
- <a type="button" class="btn btn-info"  href="../View/agentDashboard.php">Go back</a>
+ <a type="button" class="btn btn-info"  onclick="goBackToPrev()">Go back</a>
 </div>
  </div>
   <!--2nd row-->

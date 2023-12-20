@@ -42,7 +42,7 @@ monitoring
   <li class="nav-item">
     <a class="nav-link text-dark" href="clientProfile.php"><span class="material-symbols-outlined">
 settings
-</span> Settings</a>
+</span>  Profile</a>
   </li>
   <li class="nav-item ">
     <a class="nav-link text-dark" href="../index.php?action=logout"><span class="material-symbols-outlined">

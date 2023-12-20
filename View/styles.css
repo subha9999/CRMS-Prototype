@@ -48,6 +48,9 @@
     background-color:#782b90 ;
     box-sizing:border-box;
 }
+.fixed-sidebar li :hover{
+  text-decoration: underline;
+}
 .teamLead{
   color:darkmagenta;
   text-decoration: underline;
@@ -63,4 +66,5 @@
 }
 a{
   text-decoration: none;
+  color:black;
 }

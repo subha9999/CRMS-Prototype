@@ -23,7 +23,7 @@ include "../Controller/reportController.php";
     <label class="py-2 px-3" for="dateRange">From</label>
     <input class="py-2 px-3" type="date" id="dateRange" name="from" required>
     <label class="py-2 px-3" for="dateRange">To</label>
-    <input class="py-2 px-3" type="date" id="dateRange" name="to" required>
+    <input class="py-2 px-3" type="date" id="dateRange" name="to" value="<?php echo date('Y-m-d'); ?>" required>
     <label class="py-2 px-3" for="ticketType">Select the type of ticket</label>
     <select role="button" class="btn btn-info px-3 " name="ticketType" required>
   <option >Select</option>

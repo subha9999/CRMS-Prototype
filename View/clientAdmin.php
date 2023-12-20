@@ -13,7 +13,7 @@ include "../Controller/clientController.php";
       <!--1st row-->
 <div class="container mt-3 py-2 bg-light">
         <div class="row px-4">
-        <canvas id="clientTicketChart" style="max-width:40rem;max-height:20rem"></canvas>
+        <canvas id="clientTicketChart" style="max-width:40rem;max-height:18rem"></canvas>
 </div>
 <div class="row ">
 <table class="table border-dark px-2 py-2" id="clientTable">
@@ -78,8 +78,8 @@ $('#clientTable').DataTable({
     pagingType:'full',
     bFilter: false,
     lengthMenu: [
-        [4,10, 25, 50, -1],
-        [4,10, 25, 50, 'All']
+        [3,10, 25, 50, -1],
+        [3,10, 25, 50, 'All']
     ]
   });
 </script>

@@ -45,7 +45,7 @@ monitoring
 </span> Reports</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link text-dark" href="adminProfile.php"><span class="material-symbols-outlined">
+    <a class="nav-link text-dark" href="../View/adminProfile.php"><span class="material-symbols-outlined">
 settings
 </span> Profile</a>
   </li>

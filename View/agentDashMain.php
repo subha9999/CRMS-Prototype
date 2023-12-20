@@ -1,15 +1,8 @@
  <?php include ("../Controller/AgentController.php");?>
  <!--1st row -->
- <div class="row px-2 py-2">
-    <div class="col-4">
-    <button type="button" class="btn btn-info" id="ticketForm" onclick="showTicketForm()">Add a new Ticket</button>
-    </div>
-    <div class="col-4">
-    </div>
-    </div>
-    <!--2nd row -->
 <div class="row px-2 py-2">
     <div class="col">
+    <a href="../View/agentTicket.php">
     <div class="card" style="width: 19rem;height:10rem">
   <div class="card-body">
     <div class="row">
@@ -25,8 +18,10 @@
 </div>
     </div>
     </div>
+</a>
 </div>
 <div class="col">
+  <a href="../View/agentOpenTickets.php">
     <div class="card" style="width: 19rem;height:10rem">
   <div class="card-body">
   <div class="row">
@@ -44,8 +39,10 @@ confirmation_number
   </div>
 </div>
 </div>
+</a>
     </div>
 <div class="col">
+  <a href="../View/agentCloseTickets.php">
     <div class="card" style="width: 19rem;height:10rem">
   <div class="card-body">
   <div class="row">
@@ -55,6 +52,7 @@ confirmation_number
 confirmation_number
 </span>
 </div>
+
 <div class="col">
   <br>
 <h2 class="text-success"><?php echo $closedTicket_row["closed_tickets"]; ?></h2>
@@ -63,13 +61,15 @@ confirmation_number
   </div>
   </div>
 </div>
+</a>
     </div>
     </div>
 <!--3rd row-->
 <div class="row px-2 py-2">
     <div class="col ">
     <div class="card" style="width: 21rem;height:10rem;background-color:rgb(221,38,38)">
-  <div class="card-body">
+  <a href="../View/agentHighPriority.php">
+    <div class="card-body">
     <div class="row">
       <div class="col">
         <br>
@@ -84,9 +84,11 @@ priority
     </div>
     </div>
   </div>
+</a>
 </div>
     </div>
     <div class="col">
+      <a href="../View/agentMediumPriority.php">
     <div class="card" style="width: 21rem;height:10rem;background-color:rgb(218,165,32)">
   <div class="card-body">
   <div class="row">
@@ -104,10 +106,12 @@ priority
     </div>
   </div>
 </div>
+</a>
     </div>
     <div class="col">
     <div class="card" style="width: 21rem;height:10rem;background-color:rgb(26,154,26)">
-  <div class="card-body">
+  <a href="../View/agentLowPriority.php">
+    <div class="card-body">
   <div class="row">
       <div class="col">
         <br>
@@ -122,44 +126,44 @@ priority
     </div>
     </div>
   </div>
+</a>
 </div>
     </div>
     </div>
     <!--4th row-->
-    <div class="row px-2 py-2">
-<div class="col">
-<table class="table table-light table-striped">
-<thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
+    <div class="row px-2  py-4 bg-light">
+<div class="col-8">
+<canvas id="myTicketChart" style="width:15vw;height:13vh"></canvas>
 </div>
     </div>
 
+<script>
+  var xValues=total_agent_ticket;
+  var total=totalTicket;
+  new Chart("myTicketChart", {
+  type: "line",
+   data: {
+    labels: xValues,
+    datasets: [
+    {
+      label:"Total tickets of Agent no.<?php echo $id; ?>",
+      fill: false,
+      backgroundColor: "#05761A",
+      borderColor: "#03330C",
+      data:total
+    }
+  ]
+  },
+    options: {
+        scales: {
+            y: {
+                precision: 0 ,
+                ticks:{
+                  stepSize:1
+            }
+          }
+        }
+    }
+  });
 
-   
-
+</script>

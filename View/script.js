@@ -5,7 +5,7 @@ function showTicketForm(){
         
 }
 function goBackToAgent() {
-    $("#showForm").load("agentDashMain.php");
+    $("#showForm").load("agentTicket.php #agentTicket");
     
 }
 function goBackToAdmin(){

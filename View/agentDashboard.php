@@ -7,7 +7,7 @@ include "navbar.php"; ?>
     <div class="col-2 fixed-sidebar"><?php include"agent_sidebar.php"; ?></div>
     <!--2nd column for the main content-->
     
-    <div class="col-10 px-5 py-3" id="showForm">
+    <div class="col-10 px-5 py-2" id="showForm">
       <?php include "agentDashMain.php"; ?>
     </div>
     </div>

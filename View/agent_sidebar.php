@@ -14,35 +14,31 @@ menu
 home
 </span> Home </a>
   </li>
-  <li class="nav-item ">
-    <a class="nav-link text-dark"  href="#"><span class="material-symbols-outlined">
-groups
-</span> Client </a>
-  </li>
+  
   <li class="nav-item">
     <a class="nav-link text-dark" href="../View/teamLeadInfo.php"><span class="material-symbols-outlined">
 group
 </span> Team Lead</a>
   </li>
   <li class="nav-item ">
-    <a class="nav-link text-dark" href="#"><span class="material-symbols-outlined">
+    <a class="nav-link text-dark" href="../View/agentTicket.php"><span class="material-symbols-outlined">
     confirmation_number
 </span> Tickets</a>
   </li>
   <li class="nav-item ">
-    <a class="nav-link text-dark" href="#"><span class="material-symbols-outlined">
+    <a class="nav-link text-dark" href="../View/customerAgent.php"><span class="material-symbols-outlined">
 contacts
 </span> Customers</a>
   </li>
   <li class="nav-item ">
-    <a class="nav-link text-dark" href="#"><span class="material-symbols-outlined">
+    <a class="nav-link text-dark" href="../View/agentReport.php"><span class="material-symbols-outlined">
 monitoring
 </span> Reports</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link text-dark" href="agentProfile.php"><span class="material-symbols-outlined">
+    <a class="nav-link text-dark" href="../View/agentProfile.php"><span class="material-symbols-outlined">
 settings
-</span> Settings</a>
+</span> Profile</a>
   </li>
   <li class="nav-item ">
     <a class="nav-link text-dark" href="../index.php?action=logout"><span class="material-symbols-outlined">

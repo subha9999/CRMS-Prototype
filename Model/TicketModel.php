@@ -21,7 +21,7 @@ function submitTicket($id,$priority,$customer_id,$creationDateAndTime,$ticketDes
     $ticketInfo=mysqli_query($link,$ticket);
     if($ticketInfo){
         echo '<script>alert("Done")</script>';
-        header ('Refresh: 0.2; URL =../View/agentDashboard.php');
+        header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
     }
 }
 function showTicketsToAdmin(){
@@ -67,7 +67,7 @@ function showTicketsToAdmin(){
 }
 function showTicketsToAgents($id){
     include ('../Configuration/database.php');
-    global $totalTicket_row,$openTicket_row,$closedTicket_row,$highPriority_row,$mediumPriority_row,$lowPriority_row;
+    global $totalTicket_row,$openTicket_row,$ticketJson,$closedTicket_row,$highPriority_row,$mediumPriority_row,$lowPriority_row;
     $totalTicket = "SELECT COUNT(ticketID) AS total_no_of_tickets FROM tickets WHERE agentID='$id'";
     $totalTicketInfo=mysqli_query($link,$totalTicket);
     $totalTicket_row=mysqli_fetch_array($totalTicketInfo,MYSQLI_ASSOC);
@@ -91,6 +91,12 @@ function showTicketsToAgents($id){
     $lowPriorityTicket= "SELECT COUNT(ticketID) AS low_PriorityTickets FROM tickets WHERE priority='low' AND agentID='$id'";
     $lowPriorityInfo=mysqli_query($link,$lowPriorityTicket);
     $lowPriority_row=mysqli_fetch_array($lowPriorityInfo,MYSQLI_ASSOC);
+
+    $total=$totalTicket_row["total_no_of_tickets"];
+    $open=$openTicket_row["open_tickets"];
+    $close=$closedTicket_row["closed_tickets"];
+    $ticket=array($total,$open,$close);
+    $ticketJson=json_encode($ticket);
 }
 function submitTicketFromAdmin($id,$customer_id,$creationDateAndTime,$ticketDesc,$subject,$client_id){
     include "../Configuration/database.php";
@@ -99,7 +105,7 @@ function submitTicketFromAdmin($id,$customer_id,$creationDateAndTime,$ticketDesc
     $ticketInfo=mysqli_query($link,$ticket);
     if($ticketInfo){
         echo '<script>alert("Added a new Ticket")</script>';
-        header ('Refresh: 0.2; URL =../View/adminTicket.php');
+        header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
     }
 }
 function getTickets( ){
@@ -141,7 +147,7 @@ function changeStatus($ticketID,$newStatus,$updateDateandTime,$remarks){
     $sqlResult=mysqli_query($link,$sql);
     if($sqlResult){
         echo '<script>alert("Done")</script>';
-        header("Refresh:0.2,URL=../View/allTickets.php");
+        header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
     }
 }
 function deleteTicket($deleteTicketID){
@@ -149,8 +155,11 @@ function deleteTicket($deleteTicketID){
     $sql="DELETE FROM tickets WHERE ticketID='$deleteTicketID'";
     $sqlResult=mysqli_query($link,$sql);
     if($sqlResult){
-        echo '<script>alert("Done")</script>';
-        header("Refresh:0.2,URL=../View/allTickets.php");
+        echo '<script>
+        alert("Done");
+        window.history.go(-2);
+        </script>';
+        
     }
 }
 function updateTicketAgent($oldAgentID,$newAgentID){
@@ -162,4 +171,21 @@ function updateTicketAgent($oldAgentID,$newAgentID){
         header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
     }
 }
+function getAgentTickets($id){
+    include "../Configuration/database.php";
+    global $allTicketsRes,$openTicketsRes,$closeTicketsRes,$highTicketRes,$medTicketRes,$lowTicketRes;
+    $sql="SELECT * FROM tickets WHERE agentID='$id'";
+    $allTicketsRes=mysqli_query($link,$sql);
+    $open="SELECT * FROM tickets WHERE agentID='$id' AND status='open'";
+    $openTicketsRes=mysqli_query($link,$open);
+    $close="SELECT * FROM tickets WHERE agentID='$id' AND status='close'";
+    $closeTicketsRes=mysqli_query($link,$close);
+    $high="SELECT * FROM tickets WHERE agentID='$id' AND priority='high'";
+    $highTicketRes=mysqli_query($link,$high);
+    $med="SELECT * FROM tickets WHERE agentID='$id' AND priority='medium'";
+    $medTicketRes=mysqli_query($link,$med);
+    $low="SELECT * FROM tickets WHERE agentID='$id' AND priority='low'";
+    $lowTicketRes=mysqli_query($link,$low);
+}
+
 ?>

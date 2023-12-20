@@ -126,4 +126,17 @@ function getAgentCount(){
   return $agentCount;
 
 }
+
+function all_ticket($id){
+  include '../Configuration/database.php';
+  $t_ticket=array();
+  $sql_1="SELECT COUNT(ticketID) AS totalTickets FROM tickets WHERE agentID='$id'";
+  $res_1=mysqli_query($link,$sql_1);
+  $row=mysqli_fetch_array($res_1,MYSQLI_ASSOC);
+  foreach(range(1,$row['totalTickets']) as $key){
+      $t_ticket[]=$key;
+  }
+  return $t_ticket;
+}
+
 ?>

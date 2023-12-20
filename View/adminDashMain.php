@@ -8,7 +8,7 @@ include ("../Controller/adminController.php");
     </div>
 </div>
 <!-- 2nd row-->
-    <div class="row px-2 py-2">
+    <div class="row px-2 py-5">
     <div class="col ">
     <a  href="../View/allTickets.php">
     <div class="card" style="width: 19rem;height:10rem">
@@ -72,12 +72,12 @@ confirmation_number
     </div>
     </div>
     <!--3rd row -->
-    <div class="row px-2 py-2 ">
+    <div class="row px-2 py-5 ">
     <div class="col ">
-        <canvas id="userChart" style="max-width:40rem;max-height:20rem;"></canvas>
+        <canvas id="userChart" style="max-width:40vw;max-height:70vh;"></canvas>
     </div>
     <div class="col">
-    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+    <canvas id="myChart" style="max-width:40vw;max-height:70vh;"></canvas>
 </div>
     </div>
 <!--4th row-->
@@ -97,17 +97,16 @@ new Chart("userChart",{
             }]
         }
 });
-var yValues=totalTicket;
   var xValues=date;
   var total=t_ticket;
   var open=o_ticket;
   var close=c_ticket;
   new Chart("myChart", {
-  type: "line",
    data: {
     labels: xValues,
     datasets: [
     {
+      type:'line',
       label:"Total",
       fill: false,
       backgroundColor: "#0D79D8",
@@ -115,6 +114,7 @@ var yValues=totalTicket;
       data:total
     },
     {
+      type:'bar',
       label:"Open",
       fill: false,
       lineTension:5,
@@ -123,6 +123,7 @@ var yValues=totalTicket;
       data:open
     },
     {
+      type:'bar',
       label:"Close",
       fill: false,
       lineTension:8,

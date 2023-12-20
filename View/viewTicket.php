@@ -6,11 +6,24 @@ include "../View/navbar.php";
   <!--Main row -->
   <div class="row">
     <!--1st column for sidebar -->
-    <div class="col-2 fixed-sidebar"><?php include"admin_sidebar.php"; ?></div>
+    <div class="col-2 fixed-sidebar"><?php
+    if($_SESSION['role']=='Agent'){
+      include '../View/agent_sidebar.php';
+    }
+    else if($_SESSION['role']=='Admin'){
+     include"../View/admin_sidebar.php"; 
+    }
+    else if($_SESSION['role']=='Team Lead'){
+      include "../View/lead_sidebar.php";
+    }
+    else{
+      include "../View/client_sidebar.php";
+    }
+     ?></div>
     <!--2nd column for the main content-->
     <div class="col-10 px-5 py-2">
     <a type="button" class="btn btn-info m-2" onclick="goBackToPrev()">Go Back</a>
-    <div class="container bg-light mt-3 py-3 px-3" id="target">
+    <div class="container bg-light mt-2 py-2 px-3" id="target">
     <h3 class="px-3 ">Ticket#<b><?php echo " ".$ticket_details_row['ticketID'];?></b></h3>
     <div class="row">
     <div class="col-9">
@@ -87,9 +100,4 @@ include "../View/navbar.php";
     </div>
     </div>
     </div>
-    <script>
-        function goBackToPrev() {
-            // Use history.back() to go back one step in the session history
-            window.history.back();
-        }
-    </script>
+    

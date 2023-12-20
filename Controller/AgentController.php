@@ -1,5 +1,6 @@
 <?php
 include("../Controller/session.php");
+include ("../Model/adminModel.php");
 include_once ('../Model/clientModel.php');
 include_once ('../Model/leadModel.php');
 include_once ("../Model/customerModel.php");
@@ -31,5 +32,13 @@ showClientName($id);
 showTeamLead($id);
 showAgentToAdmin();
 showTicketsToAgents($id);
+getAgentTickets($id);
 }
 ?>
+<script>
+    var totalTicket=<?php echo json_encode(totalTicket());?>;
+    var total_agent_ticket=<?php echo json_encode(all_ticket($ID));?>;
+    var agent_ticket=<?php echo $ticketJson;?>
+</script>
+<script src="../View/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.js"></script>

@@ -1,17 +1,31 @@
 <?php 
 include "header.php";
 include "navbar.php";
+include "session.php";
 ?>
 <div class="container-fluid">
   <!--Main row -->
   <div class="row">
     <!--1st column for sidebar -->
-    <div class="col-2 fixed-sidebar"><?php include"admin_sidebar.php"; ?></div>
+    <div class="col-2 fixed-sidebar"><?php
+    if($_SESSION['role']=='Agent'){
+      include '../View/agent_sidebar.php';
+    }
+    else if($_SESSION['role']=='Admin'){
+     include"../View/admin_sidebar.php"; 
+    }
+    else if($_SESSION['role']=='Team Lead'){
+      include "../View/lead_sidebar.php";
+    }
+    else{
+      include "../View/client_sidebar.php";
+    }
+     ?></div>
     <!--2nd column for the main content-->
     <div class="col-10 px-5 py-3">
       <!--1st row-->
 <div class="container py-2 px-3">
-<a type="button" class="btn btn-info m-3" href="../View/customerAdmin.php">Go Back</a>
+<a type="button" class="btn btn-info m-3" onclick="goBackToPrev()">Go Back</a>
 <div class="container bg-light"> 
 <div class="row px-3 py-5">
     <div class="col-5">
@@ -32,10 +46,12 @@ include "navbar.php";
     </div>
 </div>
 <div class="pb-4">
+  <?php if($_SESSION['role']=='Admin'){?>
 <form action="../Controller/customerController.php" method="GET">
     <input type="hidden" name="customerID" value="<?php echo $customer_row['customerID'];?>">
     <button type="submit" class="btn" style="background-color:cornflowerblue">Delete Customer</button>
 </form>
+<?php  } ?>
 </div>
 </div>
 </div>
