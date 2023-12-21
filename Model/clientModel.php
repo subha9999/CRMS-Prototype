@@ -104,5 +104,33 @@ function getClientDetails($clientID){
   $totalLeadRow=mysqli_fetch_array($totalLeadsInfo,MYSQLI_ASSOC);
   
 }
+function getClientRelatedInfo($id){
+  include "../Configuration/database.php";
+  global $agentCount,$leadCount,$ticketCount,$customerCount;
+  $sql="SELECT COUNT(agent.agentID) AS agentCount
+  FROM agent
+  JOIN team_lead ON agent.teamleadID = team_lead.leadID
+  JOIN client ON team_lead.client_id = client.clientID
+  WHERE client.clientID = '$id';
+  SELECT COUNT(leadID) AS leadCount FROM team_lead where client_id='$id';
+  SELECT COUNT(tickets.ticketID) AS ticketCount FROM tickets WHERE tickets.clientID='$id';
+  SELECT COUNT(tickets.customerID) AS customerCount FROM tickets WHERE tickets.clientID='$id';";
+  if (mysqli_multi_query($link, $sql)) {
+    $queryIndex = 0; 
+    do {
+      if ($result = mysqli_store_result($link)) {
+        $cl_row[$queryIndex] = mysqli_fetch_assoc($result);
+        mysqli_free_result($result);
+        $queryIndex++;
+      }
+    } while (mysqli_next_result($link));
+  }
+  $agentCount = $cl_row[0]["agentCount"];
+  $leadCount=$cl_row[1]['leadCount'];
+  $ticketCount=$cl_row[2]['ticketCount'];
+  $customerCount=$cl_row[3]['customerCount'];
+  
+  mysqli_close($link);
 
+}
 ?>

@@ -7,7 +7,7 @@ include "../Controller/clientController.php";?>
     <!--1st column for sidebar -->
     <div class="col-2 fixed-sidebar"><?php include"client_sidebar.php"; ?></div>
     <!--2nd column for the main content-->
-   <?php include('../View/clientDashMain.php') ?>
+   
     </div>
     </div>
     </div>

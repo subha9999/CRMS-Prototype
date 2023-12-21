@@ -1,7 +1,12 @@
 <?php
+include ("../Controller/session.php");
 include("../Model/clientModel.php");
 include ('../Model/adminModel.php');
+include ('../Model/leadModel.php');
+$id=$_SESSION['id'];
 showClientToAdmin();
+showLeadToClient($id);
+getClientRelatedInfo($id);
 if($_SERVER["REQUEST_METHOD"]=="POST" && !empty($_POST['firstName'])){
     $firstName=$_POST['firstName'];
     $lastName=$_POST['lastName'];

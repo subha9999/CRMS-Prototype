@@ -188,11 +188,13 @@ function updateContact($contact,$email,$id){
                 $_SESSION['contact']=$admin_row['contact'];
                 $_SESSION['email']=$admin_row['email'];
                 //echo $_SESSION['Fname']." ".$_SESSION['Lname'];
-                header('Refresh:1,URL=../View/adminProfile.php');
+                echo '<script>alert("Done")</script>';
+        header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
             }
         }
         else{
             echo '<script>alert("Failed to update")</script>';
+            header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
         }
     }
 
@@ -217,11 +219,13 @@ function updateContact($contact,$email,$id){
                 $_SESSION['contact']=$agent_row['contact'];
                 $_SESSION['email']=$agent_row['email'];
                 echo $_SESSION['Fname']." ".$_SESSION['Lname'];
-                header('Refresh:1,URL=../View/agentProfile.php');
+                echo '<script>alert("Done")</script>';
+        header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
             }
         }
         else{
             echo '<script>alert("Failed to update")</script>';
+            header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
         }
     
     }
@@ -246,11 +250,13 @@ function updateContact($contact,$email,$id){
                 $_SESSION['contact']=$lead_row['contact'];
                 $_SESSION['email']=$lead_row['email'];
                 echo $_SESSION['Fname']." ".$_SESSION['Lname'];
-                header('Refresh:1,URL=../View/leadProfile.php');
+                echo '<script>alert("Done")</script>';
+        header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
             }
         }
         else{
             echo '<script>alert("Failed to update")</script>';
+            header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
         }
     
     }
@@ -275,11 +281,13 @@ function updateContact($contact,$email,$id){
                 $_SESSION['contact']=$rep_row['contact'];
                 $_SESSION['email']=$rep_row['email'];
                 echo $_SESSION['Fname']." ".$_SESSION['Lname'];
-                header('Refresh:1,URL=../View/clientProfile.php');
+                echo '<script>alert("Done")</script>';
+                header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
             }
         }
         else{
             echo '<script>alert("Failed to update")</script>';
+            header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
         }
     
     }
@@ -342,7 +350,8 @@ function updatePassword($password,$newPassword,$confirmPassword,$id){
                     unset($_SESSION['password']);
                     $_SESSION['password']=$admin_row['password'];
                     //echo $_SESSION['Fname']." ".$_SESSION['Lname'];
-                    header('Refresh:1,URL=../View/adminProfile.php');
+                    echo '<script>alert("Done")</script>';
+                    header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
                 }
             }
             else{
@@ -385,7 +394,8 @@ function updatePassword($password,$newPassword,$confirmPassword,$id){
                      unset($_SESSION['password']);
                      $_SESSION['password']=$agent_row['password'];
                      //echo $_SESSION['Fname']." ".$_SESSION['Lname'];
-                     header('Refresh:1,URL=../View/agentProfile.php');
+                     echo '<script>alert("Done")</script>';
+                     header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
                  }
              }
              else{
@@ -427,7 +437,8 @@ function updatePassword($password,$newPassword,$confirmPassword,$id){
                     echo "<br>"."Updated"."<br>";
                     unset($_SESSION['password']);
                     $_SESSION['password']=$lead_row['password'];
-                    header('Refresh:1,URL=../View/leadProfile.php');
+                    echo '<script>alert("Done")</script>';
+                    header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
                 }
             }
             else{
@@ -467,8 +478,8 @@ function updatePassword($password,$newPassword,$confirmPassword,$id){
                         $rep_row=mysqli_fetch_array($res_4,MYSQLI_ASSOC);
                         unset($_SESSION['password']);
                         $_SESSION['password']=$rep_row['password'];
-                        echo '<br>'.'Updated'.'<br>';
-                        header('Refresh:1,URL=../View/clientProfile.php');
+                        echo '<script>alert("Done")</script>';
+                        header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
                     }
                 }
                 else{

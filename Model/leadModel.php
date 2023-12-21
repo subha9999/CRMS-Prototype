@@ -127,4 +127,11 @@ function getLeadAgents(){
 
 
 }
+function showLeadToClient($id){
+  include "../Configuration/database.php";
+  global $leadInfo,$leadRow;
+  $leadSQL="SELECT * FROM team_lead WHERE client_id='$id'";
+  $leadInfo=mysqli_query($link,$leadSQL);
+  $leadRow=mysqli_fetch_array($leadInfo,MYSQLI_ASSOC);
+}
 ?>

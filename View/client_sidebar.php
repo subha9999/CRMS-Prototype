@@ -10,37 +10,37 @@ menu
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="nav flex-column">
     <li class="nav-item ">
-    <a class="nav-link text-dark"  href="clientDashboard.php"><span class="material-symbols-outlined">
+    <a class="nav-link text-dark"  href="../View/clientDashboard.php"><span class="material-symbols-outlined">
 home
 </span> Home </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link text-dark" href="#"><span class="material-symbols-outlined">
+    <a class="nav-link text-dark" href="../View/clientTeamLead.php"><span class="material-symbols-outlined">
 group
 </span> Team Lead</a>
   </li>
   <li class="nav-item ">
-    <a class="nav-link text-dark" href="#"><span class="material-symbols-outlined">
+    <a class="nav-link text-dark" href="../View/clientAgent.php"><span class="material-symbols-outlined">
 support_agent
 </span> Agents</a>
   </li>
   <li class="nav-item ">
-    <a class="nav-link text-dark" href="#"><span class="material-symbols-outlined">
+    <a class="nav-link text-dark" href="../View/clientTicket.php"><span class="material-symbols-outlined">
     confirmation_number
 </span> Tickets</a>
   </li>
   <li class="nav-item ">
-    <a class="nav-link text-dark" href="#"><span class="material-symbols-outlined">
+    <a class="nav-link text-dark" href="../View/clientCustomer.php"><span class="material-symbols-outlined">
 contacts
 </span> Customers</a>
   </li>
   <li class="nav-item ">
-    <a class="nav-link text-dark" href="#"><span class="material-symbols-outlined">
+    <a class="nav-link text-dark" href="../View/clientReport.php"><span class="material-symbols-outlined">
 monitoring
 </span> Reports</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link text-dark" href="clientProfile.php"><span class="material-symbols-outlined">
+    <a class="nav-link text-dark" href="../View/clientProfile.php"><span class="material-symbols-outlined">
 settings
 </span>  Profile</a>
   </li>
