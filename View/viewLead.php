@@ -7,12 +7,25 @@ include "../Controller/leadController.php";
   <!--Main row -->
   <div class="row">
     <!--1st column for sidebar -->
-    <div class="col-2 fixed-sidebar"><?php include"admin_sidebar.php"; ?></div>
+    <div class="col-2 fixed-sidebar"><?php
+    if($_SESSION['role']=='Agent'){
+      include '../View/agent_sidebar.php';
+    }
+    else if($_SESSION['role']=='Admin'){
+     include"../View/admin_sidebar.php"; 
+    }
+    else if($_SESSION['role']=='Team Lead'){
+      include "../View/lead_sidebar.php";
+    }
+    else{
+      include "../View/client_sidebar.php";
+    }
+     ?></div>
     <!--2nd column for the main content-->
     <div class="col-10 px-5 py-3" id="adminTicket">
       <!--1st row-->
 <div class="container py-2 px-3">
-<a type="button" class="btn btn-info m-2" href="../View/leadAdmin.php">Go Back</a>
+<a type="button" class="btn btn-info m-2" onclick="goBackToPrev()">Go Back</a>
 <div class="container pt-2 bg-light">
 <div class="row  px-3 py-3">
     <div class="col-5">
@@ -23,7 +36,9 @@ include "../Controller/leadController.php";
       <h4 class="pb-3">Client Company:</h4>
       <h4 class="pb-3">Total Number of Agents under this Lead:</h4>
       <h4 class="pb-3">Total Number of Tickets handled by this Lead's Agents:</h4>
+      <?php if($_SESSION['role']=='Admin'){?>
       <h4 class="pb-3">Assign this Lead's Agents to other Team Lead?</h4>
+      <?php } ?>
     </div>
     <div class="col-7">
         <h4 class="pb-3"><b><?php echo $ID=$leadRow['leadID'];?></b></h4>
@@ -33,6 +48,7 @@ include "../Controller/leadController.php";
         <h4 class="pb-3"><b><?php echo $clientRow['client'];?></b></h4>
         <h4 class="pb-3"><b><?php echo $totalAgentRow['totalAgents'];?></b></h4>
         <h4 class="pb-5"><b><?php echo $totalTicketRow['totalTicketsHandled'];?></b></h4>
+        <?php if($_SESSION['role']=='Admin'){?>
         <form action="../Controller/leadController.php" method="GET">
             <div class="col-3">
             <input type="hidden" name="oldLeadID" value="<?php echo $leadRow['leadID'];?>">
@@ -49,13 +65,16 @@ include "../Controller/leadController.php";
 <button type="submit" class="btn" style="background-color:cornflowerblue">Assign</button>
 </div>
         </form>
+        <?php } ?>
     </div>
 </div>
 <div class="row pb-3">
+<?php if($_SESSION['role']=='Admin'){?>
 <form action="../Controller/leadController.php" method="POST">
     <input type="hidden" name="leadID" value="<?php echo $ID; ?>">
     <button type="submit" class="btn" style="background-color:cornflowerblue">Delete Lead</button>
 </form>
+<?php } ?>
 </div>
   </div>
   </div>

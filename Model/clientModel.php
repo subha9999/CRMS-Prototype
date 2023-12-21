@@ -133,4 +133,24 @@ function getClientRelatedInfo($id){
   mysqli_close($link);
 
 }
+function getClientAgent($id){
+  include "../Configuration/database.php";
+  global $agentInfo;
+  $sql="SELECT *
+  FROM agent
+  JOIN team_lead ON agent.teamleadID = team_lead.leadID
+  JOIN client ON team_lead.client_id = client.clientID
+  WHERE client.clientID = '$id'";
+  $agentInfo=mysqli_query($link,$sql);
+  
+}
+function getClientLead($id){
+  include "../Configuration/database.php";
+  global $leadInfo;
+  $sql="SELECT *
+  FROM team_lead
+  WHERE client_id = '$id'";
+  $leadInfo=mysqli_query($link,$sql);
+  
+}
 ?>

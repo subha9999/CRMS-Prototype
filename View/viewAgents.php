@@ -7,12 +7,25 @@ include "navbar.php";
   <!--Main row -->
   <div class="row">
     <!--1st column for sidebar -->
-    <div class="col-2 fixed-sidebar"><?php include"admin_sidebar.php"; ?></div>
+    <div class="col-2 fixed-sidebar"><?php
+    if($_SESSION['role']=='Agent'){
+      include '../View/agent_sidebar.php';
+    }
+    else if($_SESSION['role']=='Admin'){
+     include"../View/admin_sidebar.php"; 
+    }
+    else if($_SESSION['role']=='Team Lead'){
+      include "../View/lead_sidebar.php";
+    }
+    else{
+      include "../View/client_sidebar.php";
+    }
+     ?></div>
     <!--2nd column for the main content-->
     <div class="col-10 px-5 py-3" id="adminTicket">
       <!--1st row-->
 <div class="container py-2 px-3">
-<a type="button" class="btn btn-info m-2" href="../View/agentAdmin.php">Go Back</a>
+<a type="button" class="btn btn-info m-2" onclick="goBackToPrev()">Go Back</a>
 <div class="container pt-2 bg-light">
 <div class="row  px-3">
     <div class="col-5">
@@ -25,7 +38,9 @@ include "navbar.php";
       <h4 class="pb-3">Number of tickets assigned to the Agent:</h4>
       <h4 class="pb-3">Number of tickets resolved by the Agent:</h4>
       <h4 class="pb-3">Average Resolution Time:</h4>
+      <?php if($_SESSION['role']=='Admin'){?>
       <h4 class="pb-3">Assign this agent's ticket to some other agent?</h4>
+      <?php } ?>
     </div>
     <div class="col-7">
         <h4 class="pb-3"><b><?php echo $agentRow['agentID']; ?></b></h4>
@@ -38,6 +53,7 @@ include "navbar.php";
         <h4 class="pb-3"><b><?php echo $resolvedTicketRow['resolvedTickets'];?></b></h4>
         <h4 class="pb-3"><b><?php echo $avgResTimeRow['resolution_time_in_Hrs'];?> hours</b></h4>
         <div class="row">
+        <?php if($_SESSION['role']=='Admin'){?>
         <form action="../Controller/ticketController.php" method="GET">
             <div class="col-3">
             <input type="hidden" name="oldAgentID" value="<?php echo $agentRow["agentID"];?>">
@@ -54,14 +70,17 @@ while($allAgents=mysqli_fetch_assoc($allAgentInfo)){
 <button type="submit" class="btn" style="background-color:cornflowerblue">Assign</button>
 </div>
         </form>
+        <?php } ?>
 </div>
     </div>
 </div>
 <div class="row">
+<?php if($_SESSION['role']=='Admin'){?>
 <form action="../Controller/AgentController.php" method="POST">
     <input type="hidden" name="agentID" value="<?php echo $agentRow["agentID"];?>">
     <button type="submit" class="btn" style="background-color:cornflowerblue">Delete Agent</button>
 </form>
+<?php } ?>
 </div>
   </div>
   </div>

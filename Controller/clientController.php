@@ -7,6 +7,8 @@ $id=$_SESSION['id'];
 showClientToAdmin();
 showLeadToClient($id);
 getClientRelatedInfo($id);
+getClientAgent($id);
+getClientLead($id);
 if($_SERVER["REQUEST_METHOD"]=="POST" && !empty($_POST['firstName'])){
     $firstName=$_POST['firstName'];
     $lastName=$_POST['lastName'];

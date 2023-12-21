@@ -3,6 +3,7 @@
      <!--1st row -->
     <div class="row px-5 py-5">
     <div class="col ">
+      <a href="../View/clientAgent.php">
     <div class="card" style="width: 30vw;height:31vh">
   <div class="card-body">
     <div class="row">
@@ -17,8 +18,10 @@
   </div>
   </div>
 </div>
+</a>
     </div>
     <div class="col">
+      <a href="../View/clientTeamLead.php">
     <div class="card" style="width: 30vw;height:31vh">
   <div class="card-body">
     <div class="row">
@@ -33,6 +36,7 @@
   </div>
   </div>
 </div>
+</a>
     </div>
    
  
@@ -40,6 +44,7 @@
     <!--2nd row -->
     <div class="row px-5 py-3">
     <div class="col">
+      <a href="../View/clientTicket.php">
     <div class="card" style="width: 30vw;height:31vh">
   <div class="card-body">
     <div class="row">
@@ -54,9 +59,11 @@
   </div>
   </div>
 </div>
+</a>
     </div>
     <div class="col">
     <div class="card" style="width: 30vw;height:31vh">
+    <a href="../View/clientCustomer.php">
   <div class="card-body">
     <div class="row">
         <div class="col-5">
@@ -69,6 +76,7 @@
 </div>
   </div>
   </div>
+</a>
 </div>
     </div>
     </div>
