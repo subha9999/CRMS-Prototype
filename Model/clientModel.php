@@ -114,7 +114,7 @@ function getClientRelatedInfo($id){
   WHERE client.clientID = '$id';
   SELECT COUNT(leadID) AS leadCount FROM team_lead where client_id='$id';
   SELECT COUNT(tickets.ticketID) AS ticketCount FROM tickets WHERE tickets.clientID='$id';
-  SELECT COUNT(tickets.customerID) AS customerCount FROM tickets WHERE tickets.clientID='$id';";
+  SELECT COUNT(DISTINCT tickets.customerID) AS customerCount FROM tickets WHERE tickets.clientID='$id';";
   if (mysqli_multi_query($link, $sql)) {
     $queryIndex = 0; 
     do {

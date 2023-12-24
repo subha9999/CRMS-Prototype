@@ -57,6 +57,7 @@ include "../View/navbar.php";
     </div>
     </div>
     <div class="col-3">
+    <?php if($_SESSION['role']=='Admin' || $_SESSION['role']=='Agent'){?>
     <div class="accordion" id="accordionExample">
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingOne">
@@ -86,13 +87,16 @@ include "../View/navbar.php";
     </div>
   </div>
 </div>
+<?php } ?>
     </div>
     <div class="row">
       <div class="col-2">
+      <?php if($_SESSION['role']=='Admin' || $_SESSION['role']=='Agent'){?>
         <form action="../Controller/ticketController.php" method="POST" id="deleteTicketForm">
         <input type="hidden" name="hiddenTicketID" value=<?php echo $ticket_details_row['ticketID'];?>>
         <input type="submit" value="Delete Ticket" class="btn" style="background-color:darkcyan;" onclick="confirmBeforeDelete()">
         </form>
+        <?php } ?>
       </div>
     </div>
     </div>

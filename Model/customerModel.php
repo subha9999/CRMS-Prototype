@@ -51,4 +51,13 @@ function deleteCustomer($customerID){
   echo '<script>alert("Customer not Deleted")</script>';
   }
 }
+function showCustomersToClient($id){
+  include "../Configuration/database.php";
+  global $res;
+  $sql="SELECT DISTINCT customers.* FROM customers JOIN tickets 
+  on tickets.customerID=customers.customerID
+  WHERE tickets.clientID='$id'
+  GROUP BY customers.customerID;";
+  $res=mysqli_query($link,$sql);
+}
 ?>

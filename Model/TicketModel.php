@@ -187,5 +187,27 @@ function getAgentTickets($id){
     $low="SELECT * FROM tickets WHERE agentID='$id' AND priority='low'";
     $lowTicketRes=mysqli_query($link,$low);
 }
-
+function showTicketsToClient($id){
+    include "../Configuration/database.php";
+    global $result;
+    $sql="SELECT * FROM tickets WHERE clientID='$id';" ;
+    $result=mysqli_query($link,$sql);
+}
+function getTicketsForClients($id){
+    include "../Configuration/database.php";
+    $clientTicket=array();
+    $sql="SELECT COUNT(ticketID) AS totalTickets FROM tickets WHERE clientID='$id'";
+    $o_sql="SELECT COUNT(ticketID) AS openTickets FROM tickets WHERE clientID='$id' AND status='open'";
+    $c_sql="SELECT COUNT(ticketID) AS closeTickets FROM tickets WHERE clientID='$id' AND status='close'";
+    $res_t=mysqli_query($link,$sql);
+    $res_o=mysqli_query($link,$o_sql);
+    $res_c=mysqli_query($link,$c_sql);
+    $row_t=mysqli_fetch_array($res_t,MYSQLI_ASSOC);
+    $row_o=mysqli_fetch_array($res_o,MYSQLI_ASSOC);
+    $row_c=mysqli_fetch_array($res_c,MYSQLI_ASSOC);
+    $clientTicket[0]=$row_t['totalTickets'];
+    $clientTicket[1]=$row_o['openTickets'];
+    $clientTicket[2]=$row_c['closeTickets'];
+    return $clientTicket;
+}
 ?>

@@ -11,6 +11,7 @@ include "../Controller/customerController.php";
     <!--2nd column for the main content-->
     <div class="col-10 px-5 py-3" id="adminTicket">
       <!--1st row-->
+      <a type="button" class="btn btn-info m-2" onclick="goBackToPrev()">Go Back</a>
 <div class="container py-2 px-3">
 <table class="table border-dark px-2 py-2" id="customerTable">
   <thead style="background-color:darkturquoise">

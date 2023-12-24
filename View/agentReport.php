@@ -8,7 +8,7 @@ include ("../Controller/AgentController.php"); ?>
     <div class="col-2 fixed-sidebar"><?php include"agent_sidebar.php"; ?></div>
     <!--2nd column for the main content-->
     
-    <div class="col-10 px-5 py-3" id="showForm">
+    <div class="col-10 px-5 py-2" id="showForm">
     <a type="button" class="btn btn-info my-2"  onclick="goBackToPrev()">Go back</a>
     <div class="row px-2 py-2 bg-light">
     <div class="col-6 py-3">
