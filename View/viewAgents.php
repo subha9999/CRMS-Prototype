@@ -28,7 +28,7 @@ include "navbar.php";
 <a type="button" class="btn btn-info m-2" onclick="goBackToPrev()">Go Back</a>
 <div class="container pt-2 bg-light">
 <div class="row  px-3">
-    <div class="col-5">
+    <div class="col-6">
       <h4 class="pb-3">Agent No:</h4>
       <h4 class="pb-3">Agent Name:</h4>
       <h4 class="pb-3">Agent Contact Number:</h4>
@@ -42,7 +42,7 @@ include "navbar.php";
       <h4 class="pb-3">Assign this agent's ticket to some other agent?</h4>
       <?php } ?>
     </div>
-    <div class="col-7">
+    <div class="col-6">
         <h4 class="pb-3"><b><?php echo $agentRow['agentID']; ?></b></h4>
         <h4 class="pb-3"><b><?php echo $agentRow['agent_fname']." ".$agentRow['agent_lname'];?></b></h4>
         <h4 class="pb-3"><b><?php echo $agentRow['contact'];?></b></h4>
@@ -51,7 +51,13 @@ include "navbar.php";
         <h4 class="pb-3"><b><?php echo $totalTicketRow['totalTickets'];?></b></h4>
         <h4 class="pb-3"><b><?php echo $assignedTicketRow['assignedTickets'];?></b></h4>
         <h4 class="pb-3"><b><?php echo $resolvedTicketRow['resolvedTickets'];?></b></h4>
-        <h4 class="pb-3"><b><?php echo $avgResTimeRow['resolution_time_in_Hrs'];?> hours</b></h4>
+        <h4 class="pb-3"><b><?php 
+        if(!empty($avgResTimeRow['resolution_time_in_min'])){
+          echo $avgResTimeRow['resolution_time_in_min'];
+        }
+        else{
+          echo '0';
+        };?> minutes</b></h4>
         <div class="row">
         <?php if($_SESSION['role']=='Admin'){?>
         <form action="../Controller/ticketController.php" method="GET">

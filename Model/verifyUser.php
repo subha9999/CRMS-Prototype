@@ -24,7 +24,7 @@ function login($userID,$pass){
         $_SESSION["email"] = $row_1["email"];
         $_SESSION["password"] = $row_1["password"];
         $_SESSION["contact"] = $row_1["contact"];
-        header('Location:View/adminDashboard.php'); 
+        header('Location:View/dashboard.php'); 
         
     }
     elseif(!empty($row_2)){
@@ -42,7 +42,7 @@ function login($userID,$pass){
 
         }
         else{
-            header('Location:View/leadDashboard.php');
+            header('Location:View/dashboard.php');
         }
         
     }
@@ -61,7 +61,7 @@ function login($userID,$pass){
 
         }
         else{
-            header('Location:View/agentDashboard.php');
+            header('Location:View/dashboard.php');
         }
         
     }
@@ -80,7 +80,7 @@ function login($userID,$pass){
 
         }
         else{
-            header('Location:View/clientDashboard.php');
+            header('Location:View/dashboard.php');
         }
         
     }

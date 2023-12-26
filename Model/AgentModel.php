@@ -69,7 +69,7 @@ function getAgentDetails($agentID){
   JOIN tickets ON agent.agentID=tickets.agentID WHERE agent.agentID='$agentID'AND status='Close';";
   $resolvedTicketInfo=mysqli_query($link,$resolvedTickets);
   $resolvedTicketRow=mysqli_fetch_array($resolvedTicketInfo,MYSQLI_ASSOC);
-  $avgeResTime="SELECT ticketID,AVG(TIMESTAMPDIFF(HOUR, created_at, updated_at)) AS resolution_time_in_Hrs
+  $avgeResTime="SELECT ticketID,AVG(TIMESTAMPDIFF(MINUTE, created_at, updated_at)) AS resolution_time_in_min
   FROM tickets WHERE agentID='$agentID';";
   $avgResTimeInfo=mysqli_query($link,$avgeResTime);
   $avgResTimeRow=mysqli_fetch_array($avgResTimeInfo,MYSQLI_ASSOC);

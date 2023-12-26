@@ -28,7 +28,7 @@ include "../Controller/leadController.php";
 <a type="button" class="btn btn-info m-2" onclick="goBackToPrev()">Go Back</a>
 <div class="container pt-2 bg-light">
 <div class="row  px-3 py-3">
-    <div class="col-5">
+    <div class="col-6">
       <h4 class="pb-3">Lead No:</h4>
       <h4 class="pb-3">Lead Name:</h4>
       <h4 class="pb-3">Lead Contact Number:</h4>
@@ -40,7 +40,7 @@ include "../Controller/leadController.php";
       <h4 class="pb-3">Assign this Lead's Agents to other Team Lead?</h4>
       <?php } ?>
     </div>
-    <div class="col-7">
+    <div class="col-6">
         <h4 class="pb-3"><b><?php echo $ID=$leadRow['leadID'];?></b></h4>
         <h4 class="pb-3"><b><?php echo $leadRow['lead_fname']." ".$leadRow['lead_lname'];?></b></h4>
         <h4 class="pb-3"><b><?php echo $leadRow['contact']?></b></h4>

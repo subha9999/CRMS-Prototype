@@ -25,7 +25,6 @@ else if($_SERVER["REQUEST_METHOD"]=="GET" && !empty($_GET['customer_fname'])){
 }
 else if($_SERVER["REQUEST_METHOD"]=="GET" && !empty($_GET['customerID'])){
     $customerID=$_GET['customerID'];
-    $ticketID=$_GET['ticketID'];
-    deleteCustomer($customerID,$ticketID);
+    deleteCustomer($customerID);
 }
 ?>

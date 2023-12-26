@@ -134,4 +134,61 @@ function showLeadToClient($id){
   $leadInfo=mysqli_query($link,$leadSQL);
   $leadRow=mysqli_fetch_array($leadInfo,MYSQLI_ASSOC);
 }
+function getAvgResTime($id){
+  include "../Configuration/database.php";
+  $resolvingTime=array();
+  $sql="SELECT
+  agent.agentID,
+  AVG(TIMESTAMPDIFF(HOUR, created_at, updated_at)) AS avg_resolution_time_in_Hrs
+FROM
+  agent
+  JOIN team_lead ON agent.teamleadID = team_lead.leadID
+  JOIN tickets ON agent.agentID = tickets.agentID
+WHERE
+  team_lead.leadID = '$id'
+GROUP BY
+  agent.agentID;";
+  $result=mysqli_query($link,$sql);
+  while($row=mysqli_fetch_assoc($result)){
+   $resolvingTime[]=$row['avg_resolution_time_in_Hrs'];
+  }
+  return $resolvingTime;
+
+}
+function getAgentsID($id){
+  include "../Configuration/database.php";
+  $agentsID=array();
+  $sql="SELECT agent.agentID AS agentID
+FROM agent
+  JOIN team_lead ON agent.teamleadID = team_lead.leadID
+  JOIN tickets ON agent.agentID = tickets.agentID
+WHERE  team_lead.leadID = '211'
+GROUP BY  agent.agentID;";
+  $result=mysqli_query($link,$sql);
+  while($row=mysqli_fetch_assoc($result)){
+    $agentsID[]=$row['agentID'];
+   }
+   return $agentsID;
+}
+function getDetailsForLead($id){
+  include "../Configuration/database.php";
+  global $agentCount,$ticketCount;
+  $sql="SELECT COUNT(agentID) AS agentCount FROM agent WHERE teamleadID='$id';
+ SELECT COUNT(tickets.ticketID) AS totalTickets FROM tickets
+JOIN agent ON tickets.agentID=agent.agentID
+JOIN team_lead ON team_lead.leadID=agent.teamleadID
+WHERE team_lead.leadID='$id'";
+  if (mysqli_multi_query($link, $sql)) {
+    $queryIndex = 0; 
+    do {
+      if ($result = mysqli_store_result($link)) {
+        $row[$queryIndex] = mysqli_fetch_assoc($result);
+        mysqli_free_result($result);
+        $queryIndex++;
+      }
+    } while (mysqli_next_result($link));
+  }
+  $agentCount = $row[0]["agentCount"];
+  $ticketCount=$row[1]['totalTickets'];
+}
 ?>

@@ -72,12 +72,12 @@ confirmation_number
     </div>
     </div>
     <!--3rd row -->
-    <div class="row px-2 py-5 ">
+    <div class="row px-2 py-2 ">
     <div class="col ">
-        <canvas id="userChart" style="max-width:40vw;max-height:70vh;"></canvas>
+        <canvas id="userChart" style="width:20vw;height:28vh;"></canvas>
     </div>
     <div class="col">
-    <canvas id="myChart" style="max-width:40vw;max-height:70vh;"></canvas>
+    <canvas id="myChart" style="width:20vw;height:28vh;"></canvas>
 </div>
     </div>
 <!--4th row-->
@@ -91,7 +91,7 @@ new Chart("userChart",{
         data :{
             labels :x_values,
             datasets: [{
-                backgroundColor:"#2E146F",
+                backgroundColor:"#91295D",
                 data: y_values,
                 label:'No of Users'
             }]
