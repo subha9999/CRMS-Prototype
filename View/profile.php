@@ -6,7 +6,20 @@ include "navbar.php";
   <!--Main row -->
   <div class="row">
     <!--1st column for sidebar -->
-    <div class="col-2 fixed-sidebar"><?php include"admin_sidebar.php"; ?></div>
+    <div class="col-2 fixed-sidebar"><?php
+    if($_SESSION['role']=='Agent'){
+      include '../View/agent_sidebar.php';
+    }
+    else if($_SESSION['role']=='Admin'){
+     include"../View/admin_sidebar.php"; 
+    }
+    else if($_SESSION['role']=='Team Lead'){
+      include "../View/lead_sidebar.php";
+    }
+    else{
+      include "../View/client_sidebar.php";
+    }
+     ?></div>
     <!--2nd column for the main content-->
     <div class="col-10 px-5 py-5">
       <!--1st row -->

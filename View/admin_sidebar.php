@@ -10,7 +10,7 @@ menu
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="nav flex-column">
     <li class="nav-item ">
-    <a class="nav-link text-dark"  href="../View/adminDashboard.php"><span class="material-symbols-outlined">
+    <a class="nav-link text-dark"  href="../View/dashboard.php"><span class="material-symbols-outlined">
 home
 </span> Home </a>
   </li>
@@ -45,7 +45,7 @@ monitoring
 </span> Reports</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link text-dark" href="../View/adminProfile.php"><span class="material-symbols-outlined">
+    <a class="nav-link text-dark" href="../View/profile.php"><span class="material-symbols-outlined">
 settings
 </span> Profile</a>
   </li>

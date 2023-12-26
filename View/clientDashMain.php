@@ -1,4 +1,6 @@
-
+<?php 
+include "../Controller/clientController.php";
+?>
 <div class="col-10 px-5 py-5">
      <!--1st row -->
     <div class="row px-5 py-5">
