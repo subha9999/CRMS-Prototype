@@ -139,7 +139,7 @@ function getAvgResTime($id){
   $resolvingTime=array();
   $sql="SELECT
   agent.agentID,
-  AVG(TIMESTAMPDIFF(HOUR, created_at, updated_at)) AS avg_resolution_time_in_Hrs
+  AVG(TIMESTAMPDIFF(MINUTE, created_at, updated_at)) AS avg_resolution_time_in_Hrs
 FROM
   agent
   JOIN team_lead ON agent.teamleadID = team_lead.leadID
@@ -190,5 +190,54 @@ WHERE team_lead.leadID='$id'";
   }
   $agentCount = $row[0]["agentCount"];
   $ticketCount=$row[1]['totalTickets'];
+}
+function showAgentToLead($id){
+  include "../Configuration/database.php";
+  global $agentInfo;
+  $sql="SELECT * FROM agent WHERE teamleadID='$id'";
+  $agentInfo=mysqli_query($link,$sql);
+}
+function showTicketInfoToLead($id){
+  include "../Configuration/database.php";
+  global $result;
+  $sql="SELECT * FROM tickets
+  JOIN agent ON tickets.agentID=agent.agentID
+  JOIN team_lead ON team_lead.leadID=agent.teamleadID
+  WHERE team_lead.leadID='$id';";
+  $result=mysqli_query($link,$sql);
+}
+function showClientToLead($id){
+  include "../Configuration/database.php";
+  global $client_row;
+  $sql="SELECT client.representative_fname,client.representative_lname,client.clientCompany,client.email AS clientEmail,client.contact AS clientContact
+  FROM client JOIN team_lead ON client.clientID=team_lead.client_id WHERE team_lead.leadID='$id'";
+  $info=mysqli_query($link,$sql);
+  $client_row=mysqli_fetch_array($info,MYSQLI_ASSOC);
+}
+function getTicketCountForLead($id){
+  include "../Configuration/database.php";
+  $ticketCount=array();
+  $sql=" SELECT COUNT(tickets.ticketID) AS totalTickets FROM tickets
+ JOIN agent ON tickets.agentID=agent.agentID
+ JOIN team_lead ON team_lead.leadID=agent.teamleadID
+ WHERE team_lead.leadID='$id'";
+ $res=mysqli_query($link,$sql);
+ $row=mysqli_fetch_array($res,MYSQLI_ASSOC);
+$sql_1="SELECT COUNT(tickets.ticketID) AS openTickets FROM tickets
+JOIN agent ON tickets.agentID=agent.agentID
+JOIN team_lead ON team_lead.leadID=agent.teamleadID
+WHERE team_lead.leadID='$id' AND status='open'";
+$res_1=mysqli_query($link,$sql_1);
+$row_1=mysqli_fetch_array($res_1,MYSQLI_ASSOC);
+$sql_2="SELECT COUNT(tickets.ticketID) AS closeTickets FROM tickets
+JOIN agent ON tickets.agentID=agent.agentID
+JOIN team_lead ON team_lead.leadID=agent.teamleadID
+WHERE team_lead.leadID='$id' AND status='close'";
+$res_2=mysqli_query($link,$sql_2);
+$row_2=mysqli_fetch_array($res_2,MYSQLI_ASSOC);
+$ticketCount[0]=$row['totalTickets'];
+$ticketCount[1]=$row_1['openTickets'];
+$ticketCount[2]=$row_2['closeTickets'];
+return $ticketCount;
 }
 ?>

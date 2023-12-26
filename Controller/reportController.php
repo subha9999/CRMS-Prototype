@@ -22,6 +22,13 @@ else if($_SERVER["REQUEST_METHOD"]=="GET" && !empty($_GET['clientID'])){
     $to=$_GET['to'];
     client_ticketDetailsXLSX($to,$from,$ticketType,$id);
 }
+else if($_SERVER["REQUEST_METHOD"]=="GET" && !empty($_GET['leadID'])){
+    $ticketType=$_GET['ticketType'];
+    $id=$_GET['leadID'];
+    $from=$_GET['from'];
+    $to=$_GET['to'];
+   teamLead_ticketDetailsXLSX($to,$from,$ticketType,$id);
+}
 ?>
 <script>
     var leadArray=<?php echo json_encode(getLeadAgents());?>;

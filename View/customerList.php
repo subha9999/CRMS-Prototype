@@ -7,12 +7,26 @@ include "../Controller/customerController.php";
   <!--Main row -->
   <div class="row">
     <!--1st column for sidebar -->
-    <div class="col-2 fixed-sidebar"><?php include"admin_sidebar.php"; ?></div>
+    <div class="col-2 fixed-sidebar"><?php
+    if($_SESSION['role']=='Agent'){
+      include '../View/agent_sidebar.php';
+    }
+    else if($_SESSION['role']=='Admin'){
+     include"../View/admin_sidebar.php"; 
+    }
+    else if($_SESSION['role']=='Team Lead'){
+      include "../View/lead_sidebar.php";
+    }
+    else{
+      include "../View/client_sidebar.php";
+    }
+     ?></div>
     <!--2nd column for the main content-->
+    
     <div class="col-10 px-5 py-3" id="adminTicket">
       <!--1st row-->
-      <a type="button" class="btn btn-info m-2" onclick="goBackToPrev()">Go Back</a>
 <div class="container py-2 px-3">
+<a type="button" class="btn btn-info my-2"  onclick="goBackToPrev()">Go back</a>
 <table class="table border-dark px-2 py-2" id="customerTable">
   <thead style="background-color:darkturquoise">
     <tr>

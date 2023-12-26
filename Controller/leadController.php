@@ -7,6 +7,9 @@ $id=$_SESSION['id'];
 assignClient();
 showLeadToAdmin();
 getDetailsForLead($id);
+showAgentToLead($id);
+showTicketInfoToLead($id);
+showClientToLead($id);
 if($_SERVER["REQUEST_METHOD"]=="POST" && !empty($_POST['firstName'])){
     $firstName=$_POST['firstName'];
     $lastName=$_POST['lastName'];
@@ -36,6 +39,7 @@ else if($_SERVER['REQUEST_METHOD']== 'POST'&& !empty($_POST['leadID'])){
 <script>
     var resolvingTime=<?php echo json_encode(getAvgResTime($id));?>;
     var agentsID_array=<?php echo json_encode(getAgentsID($id));?>;
+    var ticketCount=<?php echo json_encode(getTicketCountForLead($id));?>;
 </script>
 <script src="../View/script.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.js"></script>

@@ -17,7 +17,7 @@ include "../Controller/reportController.php";
 </div>
 </div>
 <div class="row px-3 py-3" style="background-color:white">
-  <h4 class="py-3"><b> Select the date range to download tickets</b></h4>
+  <h4 class="py-3"><b> Select the date range to download Tickets' Information</b></h4>
   <!--form-->
   <form action="../Controller/reportController.php" method="POST">
     <label class="py-2 px-3" for="dateRange">From</label>

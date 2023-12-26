@@ -51,11 +51,12 @@
   var y_values=resolvingTime;
 var x_values=agentsID_array;
 new Chart("myChart",{
-        type:"bar",
+        type:"line",
         data :{
             labels :x_values,
             datasets: [{
                 backgroundColor:"#D61F4E",
+                borderColor:"#063042",
                 data: y_values,
                 label:'Average resolution time of each agent in minutes'
             }]

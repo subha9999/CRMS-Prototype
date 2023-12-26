@@ -35,7 +35,7 @@ support_agent
 </span> Tickets</a>
   </li>
   <li class="nav-item ">
-    <a class="nav-link text-dark" href="../View/customerAdmin.php"><span class="material-symbols-outlined">
+    <a class="nav-link text-dark" href="../View/customerList.php"><span class="material-symbols-outlined">
 contacts
 </span> Customers</a>
   </li>

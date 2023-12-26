@@ -15,7 +15,7 @@ include "../Controller/clientController.php";?>
 <figcaption class="figure-caption text-center py-3">Tickets Distribution of <?php echo $_SESSION['role'];?></figcaption>
 </div>
 <div class="col-6">
-<h4 class="py-3"><b> Select the date range to download tickets</b></h4>
+<h4 class="py-3"><b> Select the date range to download Tickets' Information</b></h4>
   <!--form-->
   <form action="../Controller/reportController.php" method="GET">
     <label class="py-2 " for="dateRange">From</label><br>
