@@ -24,6 +24,7 @@ function login($userID,$pass){
         $_SESSION["email"] = $row_1["email"];
         $_SESSION["password"] = $row_1["password"];
         $_SESSION["contact"] = $row_1["contact"];
+        $_SESSION["userID"]=$row_1["userID"];
         header('Location:View/dashboard.php'); 
         
     }
@@ -37,12 +38,14 @@ function login($userID,$pass){
         $_SESSION["email"] = $row_2["email"];
         $_SESSION["password"] = $row_2["password"];
         $_SESSION["contact"] = $row_2["contact"];
+        $_SESSION['userID']=$row_2['userID'];
         if ($_SESSION['email']=='' && $_SESSION['password']==''){
             echo 'Error';
 
         }
         else{
-            header('Location:View/dashboard.php');
+            echo $_SESSION['userID'];
+           header('Location:View/dashboard.php');
         }
         
     }
@@ -56,6 +59,7 @@ function login($userID,$pass){
         $_SESSION["email"] = $row_3["email"];
         $_SESSION["password"] = $row_3["password"];
         $_SESSION["contact"] = $row_3["contact"];
+        $_SESSION['userID']=$row_3['userID'];
         if ($_SESSION['email']=='' && $_SESSION['password']==''){
             echo 'Error';
 
@@ -75,6 +79,7 @@ function login($userID,$pass){
         $_SESSION["email"] = $row_4["email"];
         $_SESSION["password"] = $row_4["password"];
         $_SESSION["contact"] = $row_4["contact"];
+        $_SESSION['userID']=$row_4['userID'];
         if ($_SESSION['email']=='' && $_SESSION['password']==''){
             echo 'Error';
 

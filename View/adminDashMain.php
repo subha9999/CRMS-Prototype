@@ -8,7 +8,7 @@ include ("../Controller/adminController.php");
     </div>
 </div>
 <!-- 2nd row-->
-    <div class="row px-2 py-5">
+    <div class="row px-2 py-5" >
     <div class="col ">
     <a  href="../View/allTickets.php">
     <div class="card" style="width: 19rem;height:10rem">

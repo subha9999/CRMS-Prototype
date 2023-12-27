@@ -22,7 +22,6 @@ else if($_SERVER["REQUEST_METHOD"]=="POST" && !empty($_POST['customer_fname'])){
     $subject=$_POST['subject'];
     $creationDateAndTime=$_POST['creationDate'];
     $ticketDesc=$_POST['ticketDescription'];
-    $client_id=$_POST['clientID'];
 submitTicket($id,$priority,$customer_id,$creationDateAndTime,$ticketDesc,$subject);
 }
 else if($_SERVER["REQUEST_METHOD"]=="POST" && !empty( $_POST["status"])){

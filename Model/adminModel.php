@@ -140,4 +140,10 @@ function getCreationDate(){
     }
     return $creationDate;
 }
+function viewAgents(){
+    include "../Configuration/database.php";
+    global $agent_info,$agentRow;
+    $agentSQL="SELECT * FROM agent";
+    $agent_info=mysqli_query($link,$agentSQL); 
+}
 ?>

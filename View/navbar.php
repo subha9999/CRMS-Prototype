@@ -64,14 +64,19 @@ contact_mail</span>
 </div>
 <!--Alert Modal-->
 <div class="modal fade" id="alertModal"  aria-labelledby="alertModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="alertModalLabel">Notifications</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      ......
+        <div id="notification">
+<?php 
+include ("../Controller/notificationsController.php");
+
+?>
+</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn" data-bs-dismiss="modal" style="background-color:#48CCCD">Close</button>

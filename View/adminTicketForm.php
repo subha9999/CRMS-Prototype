@@ -1,5 +1,5 @@
 <?php include ("../Controller/adminController.php"); 
-include ("../Controller/session.php")?>
+include ("../Controller/session.php");?>
 <!--1st row-->
 <div class="row px-2 py-1">
     <div class="col-4">
@@ -75,7 +75,7 @@ while($clientRow=mysqli_fetch_assoc($clientResult)){
     <select class="prioritybutton px-4 py-2 rounded-2" name="agent">
     <option>Select</option>
 <?php
-while($agentRow=mysqli_fetch_assoc($agentInfo)){
+while($agentRow=mysqli_fetch_assoc($agent_info)){
     echo '<option value='.$agentRow['agentID'].'>'.$agentRow['agent_fname']." ". $agentRow["agent_lname"].'</option>';
     };
 ?>

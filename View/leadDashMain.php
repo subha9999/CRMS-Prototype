@@ -5,6 +5,7 @@
     <div class="row px-2 py-2">
     <div class="col-5 ">
       <div class="row px-2 py-5">
+        <a href="../View/leadAgent.php">
     <div class="card" style="width: 30vw;height:28vh">
   <div class="card-body">
   <div class="row">
@@ -19,8 +20,10 @@
   </div>
   </div>
 </div>
+</a>
 </div>
 <div class="row px-2 py-5">
+  <a href="../View/leadTicket.php">
     <div class="card" style="width: 30vw;height:28vh">
   <div class="card-body">
   <div class="row">
@@ -35,6 +38,7 @@
   </div>
   </div>
 </div>
+</a>
 </div>
     </div>
   <div class="col-7">

@@ -1,4 +1,5 @@
 <?php
+include_once ('../Model/notificationsModel.php');
 function submitTicket($id,$priority,$customer_id,$creationDateAndTime,$ticketDesc,$subject){
     include "../Configuration/database.php";
     global $client_id;
@@ -9,7 +10,7 @@ function submitTicket($id,$priority,$customer_id,$creationDateAndTime,$ticketDes
     $agentrow=mysqli_fetch_array($agentresult,MYSQLI_ASSOC);
     $agentid=$agentrow['agentID'];
 
-    $client="SELECT client.clientID  FROM agent
+    $client="SELECT client.*  FROM agent
      JOIN team_lead ON agent.teamleadID = team_lead.leadID 
      JOIN client ON team_lead.client_id = client.clientID
      WHERE agent.agentID = '$id';";
@@ -20,8 +21,21 @@ function submitTicket($id,$priority,$customer_id,$creationDateAndTime,$ticketDes
     VALUES ('Open','$priority','$creationDateAndTime','$subject','$ticketDesc','$client_id','$id','$customer_id')";
     $ticketInfo=mysqli_query($link,$ticket);
     if($ticketInfo){
+        $user_id='1';
+        $message="A new ticket has been added.Check tickets tables for details.";
+        addNotification($user_id,$message);
+        $user_id=$clientrow['userID'];
+        $message="A new ticket has been issued by one of your customer.Check the tickets table for details.";
+        addNotification($user_id,$message);
+        $l_sql="SELECT team_lead.userID FROM team_lead JOIN agent ON agent.teamleadID=team_lead.leadID WHERE agent.agentID='$id'";
+        $l_res=mysqli_query($link,$l_sql);
+        $l_row=mysqli_fetch_array($l_res,MYSQLI_ASSOC);
+        $user_id=$l_row['userID'];
+        $message="A new ticket has been added by one of your agents.Check the tickets table for details.";
+        addNotification($user_id,$message);
         echo '<script>alert("Done")</script>';
         header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
+        
     }
 }
 function showTicketsToAdmin(){
@@ -104,6 +118,25 @@ function submitTicketFromAdmin($id,$customer_id,$creationDateAndTime,$ticketDesc
     VALUES ('Open','high','$creationDateAndTime','$subject','$ticketDesc','$client_id','$id','$customer_id')";
     $ticketInfo=mysqli_query($link,$ticket);
     if($ticketInfo){
+        $sql="SELECT * FROM agent WHERE agentID='$id'";
+        $res=mysqli_query($link,$sql);
+        $ag_row=mysqli_fetch_array($res,MYSQLI_ASSOC);
+        $user_id=$ag_row['userID'];
+        $message="A new ticket has been asssigned to you.Please check tickets table for details";
+        addNotification($user_id,$message);
+        $c_sql="SELECT * FROM client WHERE clientID='$client_id'";
+        $result=mysqli_query($link,$c_sql);
+        $c_row=mysqli_fetch_array($result,MYSQLI_ASSOC);
+        $user_id=$c_row['userID'];
+        $message="A new ticket has been issued by one of your customer.Check the tickets table for details.";
+        addNotification($user_id,$message);
+        $l_sql="SELECT team_lead.userID FROM team_lead JOIN agent ON agent.teamleadID=team_lead.leadID WHERE agent.agentID='$id'";
+        $l_res=mysqli_query($link,$l_sql);
+        $l_row=mysqli_fetch_array($l_res,MYSQLI_ASSOC);
+        $user_id=$l_row['userID'];
+        $message="A new ticket has been added by one of your agents.Check the tickets table for details.";
+        addNotification($user_id,$message);
+        //echo "Check db";
         echo '<script>alert("Added a new Ticket")</script>';
         header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
     }
