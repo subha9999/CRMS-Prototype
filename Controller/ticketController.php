@@ -26,15 +26,17 @@ submitTicket($id,$priority,$customer_id,$creationDateAndTime,$ticketDesc,$subjec
 }
 else if($_SERVER["REQUEST_METHOD"]=="POST" && !empty( $_POST["status"])){
     $newStatus=$_POST['status'];
+    $id=$_POST['id'];
     $ticketID=$_POST['hiddenTicketID'];
     $updateDateandTime=$_POST['updateDate'];
     $remarks=$_POST['remarks'];
-    changeStatus($ticketID,$newStatus,$updateDateandTime,$remarks);
+    changeStatus($id,$ticketID,$newStatus,$updateDateandTime,$remarks);
 }
 
 else if($_SERVER["REQUEST_METHOD"]=="POST" && !empty( $_POST["hiddenTicketID"])){
     $deleteTicketID=$_POST["hiddenTicketID"];
-    deleteTicket($deleteTicketID);
+    $id=$_POST['id'];
+    deleteTicket($id,$deleteTicketID);
 }
 else if($_SERVER["REQUEST_METHOD"]=="GET" && !empty( $_GET["oldAgentID"] ) ){
     $oldAgentID=$_GET["oldAgentID"];

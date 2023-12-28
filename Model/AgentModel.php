@@ -1,4 +1,5 @@
 <?php
+include_once ('../Model/notificationsModel.php');
 function addNewAgent($firstName,$lastName,$email,$number,$password,$re_password,$leadID){
   include ("../Configuration/database.php");
   $validforPassword=true;
@@ -24,6 +25,12 @@ function addNewAgent($firstName,$lastName,$email,$number,$password,$re_password,
   VALUES ('$userID','$firstName','$lastName','$email','$password','$number','Agent','$leadID')";
   $newAgent=mysqli_query($link,$newAgentSQL);
   if($newAgent){
+    $sql="SELECT * FROM team_lead WHERE leadID='$leadID'";
+    $res=mysqli_query($link,$sql);
+    $row=mysqli_fetch_array($res,MYSQLI_ASSOC);
+    $user_id=$row['userID'];
+    $message="A new agent has been assigned under you.";
+    addNotification($user_id,$message);
     echo '<script>alert("Added a new user")</script>';
     header('Refresh:0.2, URL=../View/agentAdmin.php');
   }
@@ -81,6 +88,7 @@ function deleteAgent($agentID){
   $info="SELECT * FROM agent WHERE agentID='$agentID'";
   $res=mysqli_query($link,$info);
   $row=mysqli_fetch_array($res,MYSQLI_ASSOC);
+  $leadID=$row['teamleadID'];
   $userID=$row["userID"];
   $sql="DELETE FROM agent WHERE agentID='$agentID'";
   $sqlResult=mysqli_query($link,$sql);

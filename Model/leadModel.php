@@ -1,4 +1,5 @@
 <?php
+include_once ('../Model/notificationsModel.php');
 function showTeamLead($id){
     include "../Configuration/database.php";
     global $lead_F_Name,$lead_L_Name,$lead_email,$lead_contact, $client_name;
@@ -47,6 +48,12 @@ function addNewLead($firstName,$lastName,$email,$number,$password,$re_password,$
     VALUES ('$userID','$firstName','$lastName','Team Lead','$email','$password','$number','$clientID')";
     $newLeadResult=mysqli_query($link,$newLead);
   if($newLeadResult){
+    $sql="SELECT * FROM client WHERE clientID='$clientID'";
+    $res=mysqli_query($link,$sql);
+    $row=mysqli_fetch_array($res,MYSQLI_ASSOC);
+    $user_id=$row['userID'];
+    $message="A new team lead has been assigned to report to you.";
+    addNotification($user_id,$message);
     echo '<script>alert("Added a new user")</script>';
     header('Refresh:0.2, URL=../View/leadAdmin.php');
   }

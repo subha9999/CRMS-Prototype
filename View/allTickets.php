@@ -22,6 +22,7 @@ include "../Controller/adminController.php";
       <th scope="col">Ticket Description</th>
       <th scope="col">Ticket Status</th>
       <th scope="col">Ticket Priority</th>
+      <th scope="col">Client ID</th>
       <th scope="col">Creation Date and Time</th>
       <th scope="col">Updated Date and Time</th>
       <th scope="col">Actions</th>
@@ -35,6 +36,7 @@ include "../Controller/adminController.php";
       <td><?php echo $allTicketsRow['description'];?></td>
       <td><?php echo $allTicketsRow['status'];?></td>
       <td><?php echo $allTicketsRow['priority'];?></td>
+      <td><?php echo $allTicketsRow['clientID'];?></td>
       <td><?php echo $allTicketsRow['created_at'];?></td>
       <td><?php echo $allTicketsRow['updated_at'];?></td>
       <td>
@@ -56,8 +58,8 @@ include "../Controller/adminController.php";
   <script>$('#ticketsTable').DataTable({
     pagingType:'full',
     lengthMenu: [
-        [5,10, 25, 50, -1],
-        [5,10, 25, 50, 'All']
+        [4,10, 25, 50, -1],
+        [4,10, 25, 50, 'All']
     ]
   });
        

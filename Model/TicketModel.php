@@ -24,15 +24,19 @@ function submitTicket($id,$priority,$customer_id,$creationDateAndTime,$ticketDes
         $user_id='1';
         $message="A new ticket has been added.Check tickets tables for details.";
         addNotification($user_id,$message);
+        if(!empty($clientrow['userID'])){
         $user_id=$clientrow['userID'];
         $message="A new ticket has been issued by one of your customer.Check the tickets table for details.";
         addNotification($user_id,$message);
+        }
         $l_sql="SELECT team_lead.userID FROM team_lead JOIN agent ON agent.teamleadID=team_lead.leadID WHERE agent.agentID='$id'";
         $l_res=mysqli_query($link,$l_sql);
         $l_row=mysqli_fetch_array($l_res,MYSQLI_ASSOC);
+        if(!empty($l_row['userID'])){
         $user_id=$l_row['userID'];
         $message="A new ticket has been added by one of your agents.Check the tickets table for details.";
         addNotification($user_id,$message);
+        }
         echo '<script>alert("Done")</script>';
         header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
         
@@ -121,22 +125,27 @@ function submitTicketFromAdmin($id,$customer_id,$creationDateAndTime,$ticketDesc
         $sql="SELECT * FROM agent WHERE agentID='$id'";
         $res=mysqli_query($link,$sql);
         $ag_row=mysqli_fetch_array($res,MYSQLI_ASSOC);
+        if(!empty($ag_row['userID'])){
         $user_id=$ag_row['userID'];
         $message="A new ticket has been asssigned to you.Please check tickets table for details";
         addNotification($user_id,$message);
+        }
         $c_sql="SELECT * FROM client WHERE clientID='$client_id'";
         $result=mysqli_query($link,$c_sql);
         $c_row=mysqli_fetch_array($result,MYSQLI_ASSOC);
+        if(!empty($c_row['userID'])){
         $user_id=$c_row['userID'];
         $message="A new ticket has been issued by one of your customer.Check the tickets table for details.";
         addNotification($user_id,$message);
+        }
         $l_sql="SELECT team_lead.userID FROM team_lead JOIN agent ON agent.teamleadID=team_lead.leadID WHERE agent.agentID='$id'";
         $l_res=mysqli_query($link,$l_sql);
         $l_row=mysqli_fetch_array($l_res,MYSQLI_ASSOC);
+        if(!empty($l_row['userID'])){
         $user_id=$l_row['userID'];
         $message="A new ticket has been added by one of your agents.Check the tickets table for details.";
         addNotification($user_id,$message);
-        //echo "Check db";
+        }
         echo '<script>alert("Added a new Ticket")</script>';
         header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
     }
@@ -174,16 +183,62 @@ function getTicketDetails($ticketID){
     $agentRow=mysqli_fetch_array($agentInfo,MYSQLI_ASSOC);
    
 }
-function changeStatus($ticketID,$newStatus,$updateDateandTime,$remarks){
+function changeStatus($id,$ticketID,$newStatus,$updateDateandTime,$remarks){
     include "../Configuration/database.php";
     $sql="UPDATE tickets SET status='$newStatus',updated_at='$updateDateandTime',remarks='$remarks' WHERE ticketID='$ticketID'";
     $sqlResult=mysqli_query($link,$sql);
     if($sqlResult){
+        $query1="SELECT * FROM admin WHERE adminID='$id'";
+        $res1=mysqli_query($link,$query1);
+        if($res1){
+        $adRow=mysqli_fetch_array($res1,MYSQLI_ASSOC);
+        }
+        if(!empty($adRow) ){
+            $query3="SELECT * FROM agent JOIN tickets ON tickets.agentID=agent.agentID WHERE tickets.ticketID='$ticketID'";
+            $res3=mysqli_query($link,$query3);
+            $agentRow=mysqli_fetch_array($res3,MYSQLI_ASSOC);
+        if(!empty($agentRow['userID'])){
+        $user_id=$agentRow['userID'];
+        $message="The status of a ticket has been changed.Check tickets table for details.";
+        addNotification($user_id,$message);
+        }
+        }
+
+        $query2="SELECT * FROM agent WHERE agentID='$id'";
+        $res2=mysqli_query($link,$query2);
+        if($res2){
+            $agRow=mysqli_fetch_array($res2,MYSQLI_ASSOC);
+        }
+        if(!empty($agRow)){
+        $user_id='1';
+        $message="The status of a ticket has been changed.Check tickets table for details.";
+        addNotification($user_id,$message); 
+        }
+
+        $sql="SELECT * FROM client JOIN tickets ON client.clientID=tickets.clientID WHERE ticketID='$ticketID'";
+        $result=mysqli_query($link,$sql);
+        $clientrow=mysqli_fetch_array($result,MYSQLI_ASSOC);
+        if(!empty($clientrow['userID'])){
+        $user_id=$clientrow['userID'];
+        $message="The status of a ticket has been changed.Check tickets table for details.";
+        addNotification($user_id,$message);
+        }
+        $l_sql="SELECT team_lead.userID FROM team_lead
+         JOIN agent ON agent.teamleadID=team_lead.leadID 
+         JOIN tickets ON tickets.agentID=agent.agentID
+          WHERE tickets.ticketID='$ticketID'";
+        $l_res=mysqli_query($link,$l_sql);
+        $l_row=mysqli_fetch_array($l_res,MYSQLI_ASSOC);
+        if(!empty($l_row['userID'])){
+        $user_id=$l_row['userID'];
+        $message="The status of a ticket has been changed.Check tickets table for details.";
+        addNotification($user_id,$message);
+        }
         echo '<script>alert("Done")</script>';
         header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
     }
 }
-function deleteTicket($deleteTicketID){
+function deleteTicket($id,$deleteTicketID){
     include "../Configuration/database.php";
     $sql="DELETE FROM tickets WHERE ticketID='$deleteTicketID'";
     $sqlResult=mysqli_query($link,$sql);
@@ -200,6 +255,14 @@ function updateTicketAgent($oldAgentID,$newAgentID){
     $sql="UPDATE `tickets` SET `agentID` = '$newAgentID' WHERE `tickets`.`agentID` ='$oldAgentID';";
     $sqlRes=mysqli_query($link,$sql);
     if($sqlRes){
+        $sql="SELECT * FROM agent WHERE agentID='$newAgentID'";
+        $res=mysqli_query($link,$sql);
+        $row=mysqli_fetch_array($res,MYSQLI_ASSOC);
+        if(!empty($row['userID'])){
+            $user_id=$row['userID'];
+            $message="A new ticket has been assigned to you.";
+            addNotification($user_id,$message);
+        }
         echo '<script>alert("Done")</script>';
         header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
     }

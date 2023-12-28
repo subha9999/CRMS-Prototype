@@ -15,6 +15,7 @@ include("../Controller/session.php");
   <span class="material-symbols-outlined">
 notifications
 </span>
+<span class="badge rounded-pill bg-danger" id="notificationCount" style="display:none"></span>
 </button>
   </li>
   <li class="nav-item px-2">

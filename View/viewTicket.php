@@ -70,6 +70,7 @@ include "../View/navbar.php";
         <form action="../Controller/ticketController.php" method="POST">
       <div class="dropdown">
 <label for="status" class="form-label">Select Status</label><br>
+<input type="hidden" name="id" value="<?php echo $_SESSION['id']?>">
 <select  class="prioritybutton px-4 py-2 rounded-2" name="status" type="button">
     <option><?php echo $ticket_details_row['status'];?></option>
     <option value="Open">Open</option>
@@ -93,6 +94,7 @@ include "../View/navbar.php";
       <div class="col-2">
       <?php if($_SESSION['role']=='Admin' || $_SESSION['role']=='Agent'){?>
         <form action="../Controller/ticketController.php" method="POST" id="deleteTicketForm">
+        <input type="hidden" name="id" value="<?php echo $_SESSION['id']?>">
         <input type="hidden" name="hiddenTicketID" value=<?php echo $ticket_details_row['ticketID'];?>>
         <input type="submit" value="Delete Ticket" class="btn" style="background-color:darkcyan;" onclick="confirmBeforeDelete()">
         </form>
