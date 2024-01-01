@@ -1,4 +1,196 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require '../vendor/autoload.php';
+function sendEmail($id,$email,$verificationCode,$expirationTime){
+    include("../Configuration/database.php");
+    $sql="INSERT INTO tokens(userID,email,verification_code,expiration_time,status)
+    VALUES ('$id','$email','$verificationCode','$expirationTime','0')";
+    $result=mysqli_query($link,$sql);
+    $mail = new PHPMailer(true);
+
+    try {
+        $mail = new PHPMailer();
+$mail->isSMTP();
+$mail->Host = 'sandbox.smtp.mailtrap.io';
+$mail->SMTPAuth = true; 
+$mail->Port = 2525;
+$mail->Username = '2bfbe7db576c0a';
+$mail->Password = 'eb62b37ba1aaba'; 
+
+    
+        $mail->setFrom('subhanizam15@gmail.com');
+        $mail->addAddress($email);
+
+        $mail->isHTML(true);
+        $mail->Subject = 'Password Reset Verification Code';
+        $mail->Body = 'Your verification code is: ' . $verificationCode;
+
+        $mail->send();
+        header('Location:../View/verificationCode.php');
+        exit();
+    } catch (Exception $e) {
+        echo 'Error: ' . $e->getMessage();
+    }
+}
+function checkCode($code){
+    include("../Configuration/database.php");
+    $sql="UPDATE tokens SET status='1' WHERE verification_code='$code'";
+    $res=mysqli_query($link,$sql);
+    header('Location:../View/resetPassword.php');
+}
+function resetPassword($password,$cPassword,$id){
+    include("../Configuration/database.php");
+    $admin = "SELECT * FROM admin WHERE adminID='$id'";
+    $agent = "SELECT * FROM agent WHERE agentID='$id'";
+    $lead = "SELECT * FROM team_lead WHERE leadID='$id'";
+    $client = "SELECT * FROM client WHERE clientID='$id'";
+    
+    $ad_res = mysqli_query($link, $admin);
+    $a_res = mysqli_query($link, $agent);
+    $l_res = mysqli_query($link, $lead);
+    $c_res = mysqli_query($link, $client);
+    
+    $ad_row = mysqli_fetch_array($ad_res, MYSQLI_ASSOC);
+    $a_row = mysqli_fetch_array($a_res, MYSQLI_ASSOC);
+    $l_row = mysqli_fetch_array($l_res, MYSQLI_ASSOC);
+    $c_row = mysqli_fetch_array($c_res, MYSQLI_ASSOC);
+    $validforPassword=true;
+    if (!preg_match('/[A-Z]/', $password)) {
+        $validforPassword=false;
+        echo '<script>alert("Password does not contain an uppercase letter.")</script>';
+    }
+    if (!preg_match('/[a-z]/', $password)) {
+        $validforPassword=false;
+        echo '<script>alert("Password does not contain a lowercase letter."")</script>';
+    }
+    if (!preg_match('/[0-9]/', $password) ||strlen($password) < 8 ) {
+        $validforPassword=false;
+        echo '<script>alert("Password does not meet length or digit requirement.")</script>';
+    }
+    if($id==$ad_row['adminID']){
+         if($cPassword==$password){
+             if($validforPassword){
+             $updateAdmin="UPDATE admin SET password='$password' WHERE adminID='$id'";
+             $resultforAdmin=mysqli_query($link,$updateAdmin);
+             if($resultforAdmin){
+                
+                     echo "<br>"."Updated";
+                     echo '<script>alert("Done")</script>';
+                     header( 'Refresh:0.2,URL= ../index.php'  );
+                 
+             }
+             else{
+                 echo '<script>alert("Failed to update")</script>';
+                 header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
+             }
+         }
+         else{
+             echo '<script>alert("<br>"."Your password should have one capital,one digit and should be atleast 8 characters long")</script>';
+             header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
+         }
+ 
+ 
+         }
+         else{
+             echo '<script>alert("<br>"."Retype your new password again.")</script>';
+             header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
+         }
+        
+     }
+     else if($id==$a_row['agentID']){
+         if($cPassword==$password){
+             if($validforPassword){
+             $updateAgent="UPDATE agent SET password='$password' WHERE agentID='$id'";
+             $resultforAgent=mysqli_query($link,$updateAgent);
+             if($resultforAgent){
+                 
+                     echo "<br>"."Updated";
+                     echo '<script>alert("Done")</script>';
+                     header( 'Refresh:0.2,URL= ../index.php' );
+                 
+             }
+             else{
+                 echo '<script>alert("Failed to update")</script>';
+                 header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
+             }
+            }
+            else{
+                echo '<script>alert("<br>"."Your password should have one capital,one digit and should be atleast 8 characters long")</script>';
+                header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
+            }
+    
+ 
+         }
+         else{
+             echo '<script>alert("<br>"."Retype your new password again.")</script>';
+             header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
+         }
+     }
+     else if($id==$l_row['leadID'])
+     {
+         if($cPassword==$password){
+            if($validforPassword){
+            $updateLead="UPDATE team_lead SET password='$password' WHERE leadID='$id'";
+            $resultforLead=mysqli_query($link,$updateLead);
+            if($resultforLead){
+                
+                    echo "<br>"."Updated"."<br>";
+                    echo '<script>alert("Done")</script>';
+                    header( 'Refresh:0.2,URL= ../index.php' );
+                
+            }
+            else{
+                echo '<script>alert("Failed to update")</script>';
+                header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
+            }
+        }
+        else{
+            echo "<br>"."Your password should have one capital,one digit and should be atleast 8 characters long";
+            header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
+        }
+
+        }
+        else{
+            echo "<br>"."Retype your new password again.";
+            header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
+        }
+     }
+     else if($id==$c_row['clientID']){
+         if($cPassword==$password){
+             if($validforPassword){
+                $updateClient="UPDATE client SET password='$password' WHERE  clientID='$id';";
+                $resultforClient=mysqli_query($link,$updateClient);
+                if($resultforClient){
+                        echo '<script>alert("Done")</script>';
+                        header( 'Refresh:0.2,URL= ../index.php' );
+                    
+                }
+                else{
+                    echo "Failed to update";
+                    header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
+                }
+
+              }
+              else{
+                echo '<script>alert("<br>"."Your password should have one capital,one digit and should be atleast 8 characters long")</script>';
+                header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
+            }
+    
+
+            }
+            else{
+                echo '<script>alert("<br>"."Retype your new password again.")</script>';
+                header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
+            }                
+     }
+     else {
+        echo  '<script>alert("Failed to update")</script>';
+        header( 'Refresh:0.2,URL= ' . $_SERVER['HTTP_REFERER'] );
+     }
+    
+    
+}
 function updateName($firstName,$lastName,$id){
     include("../Configuration/database.php");
     $adminsql="SELECT * FROM admin WHERE adminID='$id';";
@@ -508,4 +700,5 @@ function updatePassword($password,$newPassword,$confirmPassword,$id){
                 
      }
 }
+
 ?>

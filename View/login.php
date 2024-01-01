@@ -23,7 +23,7 @@
                     </div>
                   </form>
                         <div class="card-footer rounded">
-                          <a href=""style="color:purple ;">Forgot Password?</a>
+                          <a href="View/forgotPassword.php"style="color:purple ;">Forgot Password?</a>
                         </div>
                       </div>
                    </div>

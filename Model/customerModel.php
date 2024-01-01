@@ -45,7 +45,7 @@ function deleteCustomer($customerID){
   $res=mysqli_query($link,$sql);
   if($res){
   echo '<script>alert("Customer Deleted")</script>';
-  header("Refresh:0.2,URL=../View/customerAdmin.php");
+  header("Refresh:0.2,URL=../View/dashboard.php");
   }
   else {
   echo '<script>alert("Customer not Deleted")</script>';

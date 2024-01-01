@@ -120,6 +120,9 @@ shield_person
   <input type="submit" value="Update Password" class="btn" style="background-color:#48CCCD ;">
 </form>
   </div>
+  <div class="col">
+  <a href="../View/forgotPassword.php" class="btn" style="background-color:#48CCCD ;">Forgot Password?</a>
+  </div>
   </div>
     </div>
     </div>

@@ -86,3 +86,40 @@ include ("../Controller/notificationsController.php");
   </div>
 </div>
 </div>
+<script>
+  function checkForNotifications() {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("notification").innerHTML = this.responseText;
+            var notificationCount = $('#notification h5').length;
+            $('#notificationCount').text(notificationCount);
+            if (notificationCount > 0) {
+                $('#notificationCount').show();
+            } else {
+                $('#notificationCount').hide();
+            }
+        }
+    };
+
+    xmlhttp.open("GET", "../Controller/notificationsController.php", true);
+    xmlhttp.send();
+}
+
+checkForNotifications();
+setInterval(checkForNotifications, 1000);
+function hideNotification(notificationID){
+    console.log("Hiding notifcation");
+    console.log(notificationID);
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("notification").innerHTML = this.responseText;
+
+        }
+    };
+
+    xmlhttp.open("GET", "../Controller/notificationsController.php?action=updateStatus&notificationID="+notificationID, true);
+    xmlhttp.send();
+};
+</script>
